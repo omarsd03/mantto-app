@@ -12,6 +12,9 @@ import { SharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +22,7 @@ import { LoginComponent } from './login/login.component';
   ],
   imports: [
     BrowserModule,
+    FontAwesomeModule,
     AppRoutingModule,
     SharedModule
   ],

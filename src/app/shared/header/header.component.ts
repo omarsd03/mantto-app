@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -8,6 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
+  faCoffee = faCoffee;
 
   constructor(
     public router: Router
