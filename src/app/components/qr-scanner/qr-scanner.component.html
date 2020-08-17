@@ -1,6 +1,9 @@
-<app-qr-scanner></app-qr-scanner>
+<div class="row">
+    <zxing-scanner *ngIf="scannerEnabled" #scanner (scanSuccess)="scanSuccessHandler($event)">
+    </zxing-scanner>
+</div>
 
-<!-- <div class="container detalles animate__animated animate__fadeIn animate__fast">
+<div class="container detalles animate__animated animate__fadeIn animate__fast" *ngIf="!scannerEnabled">
     
     <h2>Actividad <small>ASM</small></h2>
 
@@ -34,10 +37,9 @@
 
     <div class="row contenedor">
         <div class="col-12">
-            <button id="btnOk" class="btn boton btn-block btn-success">OK</button>
-            <button id="btnNok" class="btn boton btn-block btn-danger">NOK</button>
+            <button (click)="abrirModal()" id="btnOk" class="btn boton btn-block btn-success">OK</button>
+            <button (click)="abrirModal()" id="btnNok" class="btn boton btn-block btn-danger">NOK</button>
         </div>
     </div>
 
-</div> -->
-
+</div>

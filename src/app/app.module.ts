@@ -7,12 +7,16 @@ import { AppRoutingModule } from './app-routing.module';
 // Modulos
 import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
-
+import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
+// Fontawsome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+// Scanner
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 
 @NgModule({
@@ -23,8 +27,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     BrowserModule,
     FontAwesomeModule,
+    ZXingScannerModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    ComponentsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

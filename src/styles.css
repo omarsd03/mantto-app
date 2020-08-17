@@ -4,5 +4,27 @@
 
 body {
 	font-family: 'Roboto', sans-serif;
-	background: #E5E5E5;
+	/* background: #E5E5E5; */
+}
+
+.secundarios {
+	color: #969696;
+}
+
+.fondo-modal {
+	background-color: rgba(0, 0, 0, 0.4);
+	left: 0px;
+	height: 100%;
+	position: fixed;
+	top: 0px;
+	width: 100%;
+}
+
+.oculto {
+	display: none;
+}
+
+.img-previa {
+    height: 200px;
+    width: 200px;
 }

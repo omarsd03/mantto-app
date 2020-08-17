@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PAGES_ROUTES } from './pages.routes';
 
 import { SharedModule } from '../shared/shared.module';
+import { ComponentsModule } from '../components/components.module';
 
 import { PagesComponent } from './pages.component';
 
@@ -21,6 +22,7 @@ import { AnomaliasComponent } from './anomalias/anomalias.component';
   imports: [
     CommonModule,
     SharedModule,
+    ComponentsModule,
     PAGES_ROUTES
   ]
 })

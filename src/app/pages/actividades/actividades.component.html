@@ -1,26 +1,3 @@
-<!-- <div class="card">
-    <div class="card-body">
-        <h3>Lavadora 1</h3>
-        <p>Verificar que los cilindros neumaticos no tengas fugas de aire</p>
-    </div>
-</div>
-
-<div class="card">
-    <div class="card-body">
-        <h3>Lavadora 2</h3>
-        <p>Verificar que los cilindros neumaticos no tengas fugas de aire</p>
-    </div>
-</div>
-
-<div class="card">
-    <div class="card-body">
-        <h3>Lavadora 3</h3>
-        <p>Verificar que los cilindros neumaticos no tengas fugas de aire</p>
-    </div>
-</div> -->
-
 <ul class="list-group">
-    <a routerLink="['/qrscanner', 1]" class="list-group-item list-group-item-action animate__animated animate__fadeIn animate__fast">Lavadora 1</a>
-    <a routerLink="['/qrscanner', 2]" class="list-group-item list-group-item-action animate__animated animate__fadeIn animate__fast">Lavadora 2</a>
-    <a routerLink="['/qrscanner', 3]" class="list-group-item list-group-item-action animate__animated animate__fadeIn animate__fast">Lavadora 3</a>
+    <a [routerLink]="['/actividad', actividad.id_actividad, { folio: actividad.folio } ]" *ngFor="let actividad of actividades" class="list-group-item list-group-item-action animate__animated animate__fadeIn animate__fast"> {{ actividad.nombre }} </a>
 </ul>

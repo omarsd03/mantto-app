@@ -1,0 +1,14 @@
+.contenedor {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+}
+
+.detalles {
+    padding-top: 15px;
+}
+
+.boton {
+    border-radius: 18px;
+}
