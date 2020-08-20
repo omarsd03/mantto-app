@@ -8,9 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { PagesModule } from './pages/pages.module';
 import { SharedModule } from './shared/shared.module';
 import { ComponentsModule } from './components/components.module';
+import { AuthModule } from './auth/auth.module';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
 
 // Fontawsome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -21,8 +21,7 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +29,9 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     ZXingScannerModule,
     AppRoutingModule,
     SharedModule,
-    ComponentsModule
+    ComponentsModule,
+    PagesModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]
