@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap, NavigationStart } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 import { ModalOkService } from '../../services/modal-ok.service';
 
@@ -7,33 +9,33 @@ import { ModalOkService } from '../../services/modal-ok.service';
   templateUrl: './qr-scanner.component.html',
   styleUrls: ['./qr-scanner.component.css']
 })
-export class QrScannerComponent implements OnInit {
+export class QrScannerComponent {
 
   public scannerEnabled: boolean = true;
-  public information: string = 'No se ha detectado información de ningún código. Acerque un código QR para escanear.';
+  public id: string;
+  public folio: string;
 
-  constructor(private modalOkService: ModalOkService) { }
+  constructor(private modalOkService: ModalOkService, private router: Router) { }
 
-  ngOnInit(): void {
-  }
+  scanSuccessHandler($event: any) {
 
-  public scanSuccessHandler($event: any) {
-    
     this.scannerEnabled = false;
-    this.information = "Espera recuperando información... ";
-
     console.log($event);
 
+    // this.router.events.pipe(filter(e => e instanceof NavigationStart)).subscribe(e => {
+    //   const navigation = this.router.getCurrentNavigation();
+    //   console.log(navigation);
+    // });
+
   }
 
-  public enableScanner() {
+  enableScanner() {
     this.scannerEnabled = !this.scannerEnabled;
-    this.information = "No se ha detectado información de ningún código. Acerque un código QR para escanear.";
   }
 
   abrirModal() {
     console.log(':D');
-    this.modalOkService.abrirModal();
+    // this.modalOkService.abrirModal();
   }
 
 }

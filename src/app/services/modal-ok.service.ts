@@ -6,13 +6,19 @@ import { Injectable } from '@angular/core';
 export class ModalOkService {
 
   private _ocultarModal: boolean = true;
+  public tipo: string;
+  public id: string;
+  public folio: string;
 
   get ocultarModal() {
     return this._ocultarModal;
   }
 
-  abrirModal() {
+  abrirModal( tipo: 'ok'|'nok', id: string, folio: string ) {
     this._ocultarModal = false;
+    this.tipo = tipo;
+    this.id = id;
+    this.folio = folio;
   }
 
   cerrarModal() {

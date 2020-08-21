@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationStart, ActivatedRoute } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-actividad',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActividadComponent implements OnInit {
 
-  constructor() { }
+  id: string;
+  folio: string;
+  url: any;
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    this.url = this.router.parseUrl(this.router.url);
+  }
 
   ngOnInit(): void {
+    // this.router.events.pipe(filter(e => e instanceof NavigationStart)).subscribe(e => {
+    //   const navigation = this.router.getCurrentNavigation();
+    //   console.log(navigation);
+    // });
+    console.log(this.url);
   }
 
 }

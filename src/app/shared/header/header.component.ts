@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faWrench, faCheck, faExclamationTriangle, faHistory, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { UsuarioService } from '../../services/usuario.service';
 
 
 @Component({
@@ -8,15 +9,19 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-  faCoffee = faCoffee;
+  faWrench = faWrench;
+  faCheck = faCheck;
+  faExclamationTriangle = faExclamationTriangle;
+  faHistory = faHistory;
+  faSignOutAlt = faSignOutAlt;
 
-  constructor(
-    public router: Router
-  ) { }
+  constructor(public router: Router, private usuarioService: UsuarioService) { }
 
-  ngOnInit(): void {
+  logout() {
+    this.usuarioService.logout();
+    this.router.navigateByUrl('/login');
   }
 
 }

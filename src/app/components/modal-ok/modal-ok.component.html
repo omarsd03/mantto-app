@@ -5,30 +5,20 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="exampleModalLabel1">New message</h4>
+                    <h4 class="modal-title text-center" id="exampleModalLabel1">Subir evidencia</h4>
                     <button (click)="cerrarModal()" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 </div>
                 <div class="modal-body">
 
-                    <div class="form-group text-center">
-                        <img *ngIf="imgTemp" [src]="imgTemp" class="img-previa">
+                    <div class="form-group">
+                        <img *ngIf="imgTemp" [src]="imgTemp" class="img-fluid rounded mx-auto d-block">
                         <input class="form-control" capture="camera" accept="image/jpg, image/jpeg" type="file" (change)="subirImagen($event.target.files[0])">
                     </div>
 
-                    <!-- <div class="form-group">
-                        <label for="recipient-name" class="control-label">Recipient:</label>
-                        <input type="text" class="form-control" id="recipient-name1">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message-text" class="control-label">Message:</label>
-                        <textarea class="form-control" id="message-text1"></textarea>
-                    </div> -->
-
                 </div>
                 <div class="modal-footer">
-                    <button (click)="cerrarModal()" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Send message</button>
+                    <button (click)="cerrarModal()" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Confirmar</button>
                 </div>
             </div>
         </div>
