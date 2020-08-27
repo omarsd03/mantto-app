@@ -6,15 +6,20 @@ import { ModalNokComponent } from './modal-nok/modal-nok.component';
 import { ModalDetalleOkComponent } from './modal-detalle-ok/modal-detalle-ok.component';
 import { ModalDetalleNokComponent } from './modal-detalle-nok/modal-detalle-nok.component';
 import { QrScannerComponent } from './qr-scanner/qr-scanner.component';
+import { GraficoDonaComponent } from './grafico-dona/grafico-dona.component';
 
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
+import { ChartsModule } from 'ng2-charts';
+
+
 @NgModule({
-  declarations: [ModalOkComponent, ModalNokComponent, ModalDetalleOkComponent, ModalDetalleNokComponent, QrScannerComponent],
-  exports: [ModalOkComponent, ModalNokComponent, ModalDetalleOkComponent, ModalDetalleNokComponent, QrScannerComponent],
+  declarations: [ModalOkComponent, ModalNokComponent, ModalDetalleOkComponent, ModalDetalleNokComponent, QrScannerComponent, GraficoDonaComponent],
+  exports: [ModalOkComponent, ModalNokComponent, ModalDetalleOkComponent, ModalDetalleNokComponent, QrScannerComponent, GraficoDonaComponent],
   imports: [
     CommonModule,
-    ZXingScannerModule
+    ZXingScannerModule,
+    ChartsModule
   ]
 })
 export class ComponentsModule { }

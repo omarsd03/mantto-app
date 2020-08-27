@@ -35,7 +35,7 @@ export class QrScannerComponent {
 
   abrirModal() {
     console.log(':D');
-    // this.modalOkService.abrirModal();
+    this.modalOkService.abrirModal('ok', 1, 'MNT-00000001');
   }
 
 }

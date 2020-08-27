@@ -42,18 +42,14 @@ export class LoginComponent {
       }
     });
 
-    Toast.fire({
-      icon: 'success',
-      title: 'Autenticado correctamente'
-    });
-
-    this.router.navigateByUrl('/');
-    return;
-
     this.usuarioService.iniciarSesion(this.loginForm.value).subscribe(resp => {
 
-      console.log('usuario logueado');
+      // console.log('usuario logueado');
       console.log(resp);
+      Toast.fire({
+        icon: 'success',
+        title: 'Autenticado correctamente'
+      });
       this.router.navigateByUrl('/');
       
     }, (err) => {

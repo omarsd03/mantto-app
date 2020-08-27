@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActividadesService } from '../../services/actividades.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  public pendientes: any = [];
+
+  constructor(private actividadesService: ActividadesService) { }
 
   ngOnInit(): void {
+    this.obtenerPendientes();
+  }
+  
+  obtenerPendientes() {
+    this.actividadesService.obtenerPendientes().subscribe((resp: any) => {
+      console.log(resp);
+      this.pendientes = resp.registros;
+    });
   }
 
 }

@@ -7,14 +7,14 @@ export class ModalOkService {
 
   private _ocultarModal: boolean = true;
   public tipo: string;
-  public id: string;
+  public id: number;
   public folio: string;
 
   get ocultarModal() {
     return this._ocultarModal;
   }
 
-  abrirModal( tipo: 'ok'|'nok', id: string, folio: string ) {
+  abrirModal( tipo: 'ok'|'nok', id: number, folio: string ) {
     this._ocultarModal = false;
     this.tipo = tipo;
     this.id = id;

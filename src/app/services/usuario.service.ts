@@ -19,17 +19,42 @@ export class UsuarioService {
     localStorage.removeItem('token');
   }
 
+  getToken() {
+    localStorage.getItem('token') || '';
+  }
+
+  // validarToken(): Observable<boolean> {
+
+  //   const token = localStorage.getItem('token') || '';
+
+  //   return this.http.get(`${base_url}/login/renew`, {
+  //     headers: {
+  //       'x-token': token
+  //     }
+  //   }).pipe(
+  //     tap( (resp: any) => {
+  //       localStorage.setItem('token', resp.token);
+  //     }),
+  //     map(resp => true),
+  //     catchError(error => of(false))
+  //   );
+
+  // }
+
   validarToken(): Observable<boolean> {
 
     const token = localStorage.getItem('token') || '';
 
-    return this.http.get(`${base_url}/login/renew`, {
+    return this.http.get(`${base_url}/signin/renew`, {
       headers: {
         'x-token': token
       }
     }).pipe(
       tap( (resp: any) => {
         localStorage.setItem('token', resp.token);
+        localStorage.setItem('id_user', resp.user.id_user);
+        localStorage.setItem('sgi', resp.user.user_sgi);
+        localStorage.setItem('role', resp.user.user_role);
       }),
       map(resp => true),
       catchError(error => of(false))
@@ -40,9 +65,12 @@ export class UsuarioService {
   iniciarSesion(formData: LoginForm) {
 
     // Descomentar para pruebas reales
-    return this.http.post(`${base_url}/login`, formData).pipe(tap(
+    return this.http.post(`${base_url}/signin`, formData).pipe(tap(
       (resp: any) => {
         localStorage.setItem('token', resp.token);
+        localStorage.setItem('id_user', resp.user.id_user);
+        localStorage.setItem('sgi', resp.user.user_sgi);
+        localStorage.setItem('role', resp.user.user_role);
       }
     ));
 

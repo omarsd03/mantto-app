@@ -18,6 +18,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 // Scanner
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
+// Ng2Chats
+import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     BrowserModule,
     FontAwesomeModule,
     ZXingScannerModule,
+    ChartsModule,
     AppRoutingModule,
     SharedModule,
     ComponentsModule,
