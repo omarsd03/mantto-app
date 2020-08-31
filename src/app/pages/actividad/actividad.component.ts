@@ -9,20 +9,17 @@ import { filter } from 'rxjs/operators';
 })
 export class ActividadComponent implements OnInit {
 
-  id: string;
-  folio: string;
-  url: any;
+  public id: string = this.activatedRoute.snapshot.paramMap.get('id');
+  public folio: string = this.activatedRoute.snapshot.paramMap.get('folio');
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
-    this.url = this.router.parseUrl(this.router.url);
+  constructor(private activatedRoute: ActivatedRoute) {
+    
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
+    this.folio = this.activatedRoute.snapshot.paramMap.get('folio');
+
   }
 
   ngOnInit(): void {
-    // this.router.events.pipe(filter(e => e instanceof NavigationStart)).subscribe(e => {
-    //   const navigation = this.router.getCurrentNavigation();
-    //   console.log(navigation);
-    // });
-    console.log(this.url);
   }
 
 }

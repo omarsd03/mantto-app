@@ -11,12 +11,12 @@ import { HistoricoComponent } from './historico/historico.component';
 
 
 const pagesRoutes: Routes = [
-    { path: '', component: HomeComponent, /*canActivate: [AuthGuard]*/ },
-    { path: 'actividades/:id', component: ActividadesComponent, /*canActivate: [AuthGuard]*/ },
-    { path: 'actividad/:id', component: ActividadComponent, /*canActivate: [AuthGuard]*/ },
-    { path: 'anomalias', component: AnomaliasComponent, /*canActivate: [AuthGuard]*/ },
-    { path: 'realizadas', component: RealizadasComponent, /*canActivate: [AuthGuard]*/ },
-    { path: 'historico', component: HistoricoComponent, /*canActivate: [AuthGuard]*/ }
+    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: 'actividades/:folio', component: ActividadesComponent, canActivate: [AuthGuard] },
+    { path: 'actividad/:id', component: ActividadComponent, canActivate: [AuthGuard] },
+    { path: 'anomalias', component: AnomaliasComponent, canActivate: [AuthGuard] },
+    { path: 'realizadas', component: RealizadasComponent, canActivate: [AuthGuard] },
+    { path: 'historico', component: HistoricoComponent, canActivate: [AuthGuard] }
 ];
 
 export const PAGES_ROUTES = RouterModule.forChild(pagesRoutes);

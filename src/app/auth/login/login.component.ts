@@ -53,7 +53,7 @@ export class LoginComponent {
       this.router.navigateByUrl('/');
       
     }, (err) => {
-      Swal.fire('Error', err.message, 'error');
+      Swal.fire('Error', 'Ha ocurrido un error en el servidor', 'error');
     });
 
   }

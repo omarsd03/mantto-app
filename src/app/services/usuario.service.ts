@@ -23,17 +23,32 @@ export class UsuarioService {
     localStorage.getItem('token') || '';
   }
 
+  loggedIn() {
+    return !!localStorage.getItem('token');
+  }
+
+  guardarLocalStorage(token: string, user: any, menu: any) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('sgi', user.user_sgi);
+    localStorage.setItem('role', user.user_role);
+    localStorage.setItem('menu', JSON.stringify(menu));
+  }
+
   // validarToken(): Observable<boolean> {
 
   //   const token = localStorage.getItem('token') || '';
 
-  //   return this.http.get(`${base_url}/login/renew`, {
+  //   return this.http.get(`${base_url}/signin/renew`, {
   //     headers: {
-  //       'x-token': token
+  //       'Content-Type': 'application/json',
+  //       'Authorization': `Bearer ${token}`
   //     }
   //   }).pipe(
   //     tap( (resp: any) => {
   //       localStorage.setItem('token', resp.token);
+  //       localStorage.setItem('id_user', resp.user.id_user);
+  //       localStorage.setItem('sgi', resp.user.user_sgi);
+  //       localStorage.setItem('role', resp.user.user_role);
   //     }),
   //     map(resp => true),
   //     catchError(error => of(false))
@@ -41,36 +56,11 @@ export class UsuarioService {
 
   // }
 
-  validarToken(): Observable<boolean> {
-
-    const token = localStorage.getItem('token') || '';
-
-    return this.http.get(`${base_url}/signin/renew`, {
-      headers: {
-        'x-token': token
-      }
-    }).pipe(
-      tap( (resp: any) => {
-        localStorage.setItem('token', resp.token);
-        localStorage.setItem('id_user', resp.user.id_user);
-        localStorage.setItem('sgi', resp.user.user_sgi);
-        localStorage.setItem('role', resp.user.user_role);
-      }),
-      map(resp => true),
-      catchError(error => of(false))
-    );
-
-  }
-
   iniciarSesion(formData: LoginForm) {
 
-    // Descomentar para pruebas reales
     return this.http.post(`${base_url}/signin`, formData).pipe(tap(
       (resp: any) => {
-        localStorage.setItem('token', resp.token);
-        localStorage.setItem('id_user', resp.user.id_user);
-        localStorage.setItem('sgi', resp.user.user_sgi);
-        localStorage.setItem('role', resp.user.user_role);
+        this.guardarLocalStorage(resp.token, resp.user, resp.menu);
       }
     ));
 

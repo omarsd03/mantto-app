@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ActividadesService } from '../../services/actividades.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-actividades',
@@ -8,27 +10,35 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ActividadesComponent implements OnInit {
 
-  actividades: any = [
-    {
-      id_actividad: 1,
-      nombre: 'Lavadora B6',
-      folio: 'MNT-000001'
-    },
-    {
-      id_actividad: 2,
-      nombre: 'Lavadora B7',
-      folio: 'MNT-000001'
-    },
-    {
-      id_actividad: 3,
-      nombre: 'Lavadora B8',
-      folio: 'MNT-000001'
-    }
-  ];
+  private folio: string;
 
-  constructor() { }
+  public actividades: any = [];
+
+  constructor(private route: ActivatedRoute, private actividadesService: ActividadesService) { }
 
   ngOnInit(): void {
+    this.obtenerFolio();
+  }
+
+  obtenerFolio() {
+    this.folio = this.route.snapshot.paramMap.get('folio');
+    this.obtenerActividades(this.folio);
+  }
+
+  obtenerActividades(folio: string) {
+
+    this.actividadesService.obtenerActividades(folio).subscribe( (resp: any) => {
+
+      console.log(resp);
+      
+      if (resp.ok == true) {
+        this.actividades = resp.registros;
+      } else {
+        Swal.fire('Error', resp.error, 'error');
+      }
+
+    })
+
   }
 
 }

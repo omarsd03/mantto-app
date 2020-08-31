@@ -35,4 +35,12 @@ export class ActividadesService {
     return this.http.post(`${this.base_url}/pendientes`, jsonData, this.headers);
 
   }
+
+  obtenerActividades(folio) {
+    
+    const jsonData = {folio};
+    
+    return this.http.post(`${this.base_url}/actividades`, jsonData, this.headers)
+
+  }
 }

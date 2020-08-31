@@ -1,3 +1,12 @@
-<ul class="list-group">
-    <a [routerLink]="['/actividad', actividad.id_actividad, { folio: actividad.folio } ]" *ngFor="let actividad of actividades" class="list-group-item list-group-item-action animate__animated animate__fadeIn animate__fast"> {{ actividad.nombre }} </a>
-</ul>
+<div class="container mt-3">
+
+    <ul class="list-group">
+        <a [routerLink]="['/actividad', actividad.id_sub_maquina, { folio: actividad.folio } ]" *ngFor="let actividad of actividades" class="list-group-item list-group-item-action animate__animated animate__fadeIn animate__fast"> {{ actividad.nombre }} </a>
+    </ul>
+
+    <div class="row contenedor mt-2">
+        <div class="col-12">
+            <button routerLink="/" class="btn btn-sm btn-primary btn-rounded btn-block">Atras</button>
+        </div>
+    </div>
+</div>

@@ -3,8 +3,12 @@
     </zxing-scanner>
 </div>
 
+<div class="row">
+    <button *ngIf="scannerEnabled" (click)="regresar()" class="btn btn-rounded btn-block btn-outline-primary">Regresar</button>
+</div>
+
 <div class="container detalles animate__animated animate__fadeIn animate__fast" *ngIf="!scannerEnabled">
-    
+
     <h2>Actividad <small>ASM</small></h2>
 
     <div class="row">
@@ -20,14 +24,14 @@
             <p>Tanques</p>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-12">
             <label class="secundarios">Categoria</label>
             <p>Mantenimiento Autonomo</p>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-12">
             <label class="secundarios">Jefe de Tarea</label>

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap, NavigationStart } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { Component, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 import { ModalOkService } from '../../services/modal-ok.service';
 
@@ -12,20 +12,43 @@ import { ModalOkService } from '../../services/modal-ok.service';
 export class QrScannerComponent {
 
   public scannerEnabled: boolean = true;
-  public id: string;
-  public folio: string;
+  public id: string = this.activatedRoute.snapshot.paramMap.get('id');
+  public folio: string = this.activatedRoute.snapshot.paramMap.get('folio');
 
-  constructor(private modalOkService: ModalOkService, private router: Router) { }
+  constructor(private modalOkService: ModalOkService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   scanSuccessHandler($event: any) {
 
-    this.scannerEnabled = false;
-    console.log($event);
+    try {
+      
+      let jsonScanner = JSON.parse($event);
+      console.log($event);
+      console.log(jsonScanner);
+  
+      if (jsonScanner._id == parseInt(this.id)) {
 
-    // this.router.events.pipe(filter(e => e instanceof NavigationStart)).subscribe(e => {
-    //   const navigation = this.router.getCurrentNavigation();
-    //   console.log(navigation);
-    // });
+        console.log('Peticion HTTP');
+        this.scannerEnabled = false;
+
+      } else {
+        
+        Swal.fire({
+          title: 'Maquina erronea',
+          text: "Este QR no corresponde a la actividad que realizaras..",
+          icon: 'warning'
+        })
+
+      }
+
+    } catch (error) {
+      console.log(error);
+      Swal.fire({
+        title: 'QR No Valido!',
+        html: 'Por favor intenta escanear nuevamente',
+        timer: 2000,
+        timerProgressBar: true,
+      })
+    }
 
   }
 
@@ -36,6 +59,10 @@ export class QrScannerComponent {
   abrirModal() {
     console.log(':D');
     this.modalOkService.abrirModal('ok', 1, 'MNT-00000001');
+  }
+
+  regresar() {
+    this.router.navigateByUrl(`/actividades/${this.folio}`);
   }
 
 }

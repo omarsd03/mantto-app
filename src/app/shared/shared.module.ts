@@ -13,7 +13,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     CommonModule,
     RouterModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   exports: [PagenotfoundComponent, HeaderComponent, SidebarComponent]
 })
