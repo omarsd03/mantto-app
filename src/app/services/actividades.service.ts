@@ -26,21 +26,128 @@ export class ActividadesService {
     }
   }
 
+  loggedIn() {
+    return !!localStorage.getItem('token');
+  }
+
   obtenerPendientes() {
 
-    const sgi = localStorage.getItem('sgi');
-    const role = localStorage.getItem('role');
-    const jsonData = { sgi, role };
+    if (this.loggedIn()) {
 
-    return this.http.post(`${this.base_url}/pendientes`, jsonData, this.headers);
+      const sgi = localStorage.getItem('sgi');
+      const role = localStorage.getItem('role');
+      const jsonData = { sgi, role };
+  
+      return this.http.post(`${this.base_url}/pendientes`, jsonData, this.headers);
+      
+    }
+
+  }
+
+  obtenerActividades(folio: string) {
+
+    if (this.loggedIn()) {
+      
+      const jsonData = {folio};
+      
+      return this.http.post(`${this.base_url}/actividades`, jsonData, this.headers);
+      
+    }
 
   }
 
-  obtenerActividades(folio) {
-    
-    const jsonData = {folio};
-    
-    return this.http.post(`${this.base_url}/actividades`, jsonData, this.headers)
+  obtenerActividad(id: string, folio: string) {
+
+    if (this.loggedIn()) {
+      
+      const sgi = localStorage.getItem('sgi');
+      const jsonData = { id_actividad: id, sgi, folio };
+
+      return this.http.post(`${this.base_url}/actividad`, jsonData, this.headers);
+
+    }
 
   }
+
+  realizarActividad(id: string, folio: string, tipo: string, descripcion: string, img: File) {
+
+    if (this.loggedIn()) {
+      
+      const jsonData = { id_actividad: id, folio, opcion: tipo, descripcion, file: img };
+      const sgi = localStorage.getItem('sgi');
+
+      if (this.cargarImagen(img, tipo, folio, sgi)) {
+        return this.http.post(`${this.base_url}/realizar`, jsonData, this.headers);
+      } else {
+        console.log('Error en la peticion');
+      }
+
+    }
+
+  }
+
+  async cargarImagen(img: File, tipo: string, folio: string, sgi: string) {
+
+    if (this.loggedIn()) {
+
+      try {
+        
+        const formData = new FormData();
+        formData.append('archivo', img);
+        formData.append('tipo', tipo);
+        formData.append('folio', folio);
+        formData.append('sgi', sgi);
+
+        const resp = await fetch(`${this.base_url}/upload`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${this.token}`
+          },
+          body: formData
+        });
+
+        const data = await resp.json();
+
+        if (data.ok) {
+          console.log(data);
+          return true;
+        } else {
+          return false;
+        }
+
+      } catch (error) {
+        console.log(error);
+        return false;
+      }
+
+    }
+
+  }
+
+  obtenerRealizadas() {
+    
+    if (this.loggedIn()) {
+      
+      const sgi = localStorage.getItem('sgi');
+      const jsonData = { sgi: sgi, status: 'OK' };
+
+      return this.http.post(`${this.base_url}/realizadas`, jsonData, this.headers);
+
+    }
+
+  }
+
+  obtenerAnomalias() {
+
+    if (this.loggedIn()) {
+      
+      const sgi = localStorage.getItem('sgi');
+      const jsonData = { sgi: sgi, status: 'NOK' };
+
+      return this.http.post(`${this.base_url}/anomalias`, jsonData, this.headers);
+
+    }
+
+  }
+
 }

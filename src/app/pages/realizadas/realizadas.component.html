@@ -1,12 +1,12 @@
-<div class="row animate__animated animate__fadeIn animate__fast">
+<div *ngFor="let item of realizadas" class="row mb-3 animate__animated animate__fadeIn animate__fast">
     <div class="col-12">
 
         <div class="card">
 
             <div class="card-body">
-                <h5 class="card-title">Lavadora 1</h5>
-                <h6 class="card-subtitle mb-2 text-muted">AM1</h6>
-                <p class="card-text">Verificar la limpieza de los rodillos inferiores y superiores</p>
+                <h5 class="card-title">{{item.nombre}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{item.prioridad}}</h6>
+                <p class="card-text">{{item.tarea}}</p>
             </div>
 
         </div>
@@ -14,7 +14,7 @@
     </div>
 </div>
 
-<div class="row animate__animated animate__fadeIn animate__fast">
+<!-- <div class="row animate__animated animate__fadeIn animate__fast">
     <div class="col-12">
 
         <div class="card">
@@ -28,4 +28,4 @@
         </div>
 
     </div>
-</div>
+</div> -->

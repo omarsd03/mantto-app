@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActividadesService } from '../../services/actividades.service';
 
 @Component({
   selector: 'app-anomalias',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnomaliasComponent implements OnInit {
 
-  constructor() { }
+  public anomalias: any = [];
+
+  constructor(private actividadesService: ActividadesService) { }
 
   ngOnInit(): void {
+    this.obtenerAnomalias();
+  }
+
+  obtenerAnomalias() {
+
+    this.actividadesService.obtenerAnomalias().subscribe( (resp: any) => {
+      console.log(resp);
+      this.anomalias = resp.registros;
+    })
+
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActividadesService } from '../../services/actividades.service';
 
 @Component({
   selector: 'app-realizadas',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RealizadasComponent implements OnInit {
 
-  constructor() { }
+  public realizadas: any = [];
+
+  constructor(private actividadesService: ActividadesService) { }
 
   ngOnInit(): void {
+    this.obtenerRealizadas();
+  }
+
+  obtenerRealizadas() {
+
+    this.actividadesService.obtenerRealizadas().subscribe( (resp: any) => {
+      console.log(resp);
+      this.realizadas = resp.registros;
+    })
+
   }
 
 }

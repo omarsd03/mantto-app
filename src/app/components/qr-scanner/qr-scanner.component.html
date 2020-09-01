@@ -3,47 +3,54 @@
     </zxing-scanner>
 </div>
 
-<div class="row">
-    <button *ngIf="scannerEnabled" (click)="regresar()" class="btn btn-rounded btn-block btn-outline-primary">Regresar</button>
+<div class="row contenedor mt-3">
+    <div class="col-12">
+        <button *ngIf="scannerEnabled" (click)="regresar()" class="btn btn-rounded btn-block btn-outline-primary">Regresar</button>
+    </div>
 </div>
 
 <div class="container detalles animate__animated animate__fadeIn animate__fast" *ngIf="!scannerEnabled">
 
-    <h2>Actividad <small>ASM</small></h2>
+    <div class="col-12" *ngFor="let item of actividad">
 
-    <div class="row">
-        <div class="col-12">
-            <label class="secundarios">Tarea</label>
-            <p>Verificar la limpieza de los rodillos inferiores y superiores</p>
+        <h2>Actividad <small>{{item.a_prioridad}}</small></h2>
+
+        <div class="row">
+            <div class="col-12">
+                <label class="secundarios">Tarea</label>
+                <p>{{item.a_tarea}}</p>
+            </div>
         </div>
+
+        <div class="row">
+            <div class="col-12">
+                <label class="secundarios">Zona de Maquina</label>
+                <p>{{item.a_zona_maquina}}</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <label class="secundarios">Categoria</label>
+                <p>{{item.a_categoria}}</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <label class="secundarios">Jefe de Tarea</label>
+                <p>{{item.a_resp_tarea}}</p>
+            </div>
+        </div>
+
+        <div class="row contenedor">
+            <div class="col-12">
+                <button (click)="abrirModalOK()" id="btnOk" class="btn btn-rounded btn-block btn-success">OK</button>
+                <button (click)="abrirModalNOK()" id="btnNok" class="btn btn-rounded btn-block btn-danger">NOK</button>
+            </div>
+        </div>
+
     </div>
 
-    <div class="row">
-        <div class="col-12">
-            <label class="secundarios">Zona de Maquina</label>
-            <p>Tanques</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12">
-            <label class="secundarios">Categoria</label>
-            <p>Mantenimiento Autonomo</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12">
-            <label class="secundarios">Jefe de Tarea</label>
-            <p>L. Santos</p>
-        </div>
-    </div>
-
-    <div class="row contenedor">
-        <div class="col-12">
-            <button (click)="abrirModal()" id="btnOk" class="btn btn-rounded btn-block btn-success">OK</button>
-            <button (click)="abrirModal()" id="btnNok" class="btn btn-rounded btn-block btn-danger">NOK</button>
-        </div>
-    </div>
 
 </div>

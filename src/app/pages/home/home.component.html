@@ -13,16 +13,12 @@
     </div>
 </div>
 
-<!-- <div class="row animate__animated animate__fadeIn animate__fast">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <h3 class="card-title">Tanques</h3>
-                <h5 class="card-title">Actividad AS3</h5>
-                <span class="badge badge-pill badge-warning">1 Actividades Pendientes</span>
-                <p class="card-text">Verificar que la unidad de mantto no tiene fugas de aire ni condensado de agua</p>
-                <a [routerLink]="[ '/actividades', 456 ]" class="btn btn-block btn-primary animate__animated animate__fadeIn animate__fast">Detalles</a>
-            </div>
-        </div>
+<div *ngIf="pendientes.length == 0" class="row animate__animated animate__fadeIn animate__fast">
+
+    <div class="col-12 text-center mt-5">
+        <h4>Todo listo por aqui</h4>
+        <img class="center" src="../../../assets/img/todo-check.svg" alt="TODO Check">
+        <p>No cuentas con actividades pendientes</p>
     </div>
-</div> -->
+
+</div>

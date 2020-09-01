@@ -7,18 +7,27 @@ export class ModalOkService {
 
   private _ocultarModal: boolean = true;
   public tipo: string;
-  public id: number;
+  public id: string;
   public folio: string;
+  public anomalia: boolean = true;
 
   get ocultarModal() {
     return this._ocultarModal;
   }
 
-  abrirModal( tipo: 'ok'|'nok', id: number, folio: string ) {
+  abrirModal( tipo: 'OK'|'NOK', id: string, folio: string ) {
+
+    if (tipo === 'NOK') {
+      this.anomalia = false;
+    } else {
+      this.anomalia = true;
+    }
+
     this._ocultarModal = false;
     this.tipo = tipo;
     this.id = id;
     this.folio = folio;
+
   }
 
   cerrarModal() {

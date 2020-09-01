@@ -1,34 +1,15 @@
-<div class="row animate__animated animate__fadeIn animate__fast">
+<div *ngFor="let item of anomalias" class="row mb-3 animate__animated animate__fadeIn animate__fast">
     <div class="col-12">
 
         <div class="card">
 
             <div class="card-body">
-                <h5 class="card-title">Zona: <strong>Lavadora</strong></h5>
-                <h6 class="card-subtitle mb-2"><strong>Lavadora 1</strong></h6>
-                <h6 class="card-subtitle mb-2 text-muted"><strong>AM1</strong></h6>
-                <p class="card-text">Verificar la limpieza de los rodillos inferiores y superiores</p>
-                <p class="card-text"><strong>Anomalia:</strong> No se limpiaron los rodillos</p>
+                <h5 class="card-title">Zona: <strong>{{item.zona_maquina}}</strong></h5>
+                <h6 class="card-subtitle mb-2"><strong>{{item.nombre}}</strong></h6>
+                <h6 class="card-subtitle mb-2 text-muted"><strong>{{item.prioridad}}</strong></h6>
+                <p class="card-text">{{item.tarea}}</p>
+                <p class="card-text"><strong>Anomalia:</strong> {{item.descripcion_anomalia}}</p>
                 <span class="badge badge-danger">Clasificacion: A</span>
-            </div>
-
-        </div>
-
-    </div>
-</div>
-
-<div class="row animate__animated animate__fadeIn animate__fast">
-    <div class="col-12">
-
-        <div class="card">
-
-            <div class="card-body">
-                <h5 class="card-title">Zona: <strong>TR Cambio de Direccion</strong></h5>
-                <h6 class="card-subtitle mb-2"><strong>Transportadores</strong></h6>
-                <h6 class="card-subtitle mb-2 text-muted"><strong>AS3</strong></h6>
-                <p class="card-text">Verificar que la unidad de mantto no tiene fugas de aire ni condensado de agua</p>
-                <p class="card-text"><strong>Anomalia:</strong> La unidad tiene una fuga</p>
-                <span class="badge badge-danger">Clasificacion: B</span>
             </div>
 
         </div>

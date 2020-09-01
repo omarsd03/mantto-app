@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   }
   
   obtenerPendientes() {
+
     this.actividadesService.obtenerPendientes().subscribe((resp: any) => {
       console.log(resp);
       this.pendientes = resp.registros;
