@@ -1,19 +1,49 @@
-<div *ngFor="let pendiente of pendientes" class="row animate__animated animate__fadeIn animate__fast">
-    <div class="col-12">
-        <div class="card">
-            <!-- <img src="https://img.etimg.com/thumb/width-1200,height-900,imgsize-372453,resizemode-1,msid-76458260/small-biz/sme-sector/shape-of-your-factory-manufacturing-in-the-post-pandemic-era.jpg" class="card-img-top" loading="lazy"> -->
-            <div class="card-body">
-                <h3 class="card-title"> {{ pendiente.m_maquina }} </h3>
-                <h5 class="card-title">Actividad {{pendiente.a_prioridad}}</h5>
-                <span class="badge badge-pill badge-warning">{{pendiente.g_total_pendientes}} Actividades Pendientes</span>
-                <p class="card-text">{{pendiente.a_tarea}}</p>
-                <a [routerLink]="[ '/actividades', pendiente.g_folio ]" class="btn btn-block btn-primary animate__animated animate__fadeIn animate__fast">Detalles</a>
+<div class="container-fluid">
+
+    <ng-container *ngIf="role === 'Operador'; then templateOperador; else templateResponsable"></ng-container>
+
+    <ng-template #templateOperador>
+
+        <div *ngFor="let pendiente of pendientes" class="row animate__animated animate__fadeIn animate__fast mb-3 mt-1">
+            <div class="col-12">
+                <div class="card shadow p-3 bg-white rounded">
+                    <!-- <img src="https://img.etimg.com/thumb/width-1200,height-900,imgsize-372453,resizemode-1,msid-76458260/small-biz/sme-sector/shape-of-your-factory-manufacturing-in-the-post-pandemic-era.jpg" class="card-img-top" loading="lazy"> -->
+                    <div class="card-body">
+                        <h3 class="card-title"> {{ pendiente.m_maquina }} </h3>
+                        <h5 class="card-title">Actividad {{pendiente.a_prioridad}}</h5>
+                        <span class="badge badge-pill badge-warning">{{pendiente.g_total_pendientes}} Actividades Pendientes</span>
+                        <p class="card-text">{{pendiente.a_tarea}}</p>
+                        <a [routerLink]="[ '/actividades', pendiente.g_folio ]" class="btn btn-block btn-primary animate__animated animate__fadeIn animate__fast">Detalles</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+
+    </ng-template>
+
+    <ng-template #templateResponsable>
+
+        <div *ngFor="let item of pendientes" class="row animate__animated animate__fadeIn animate__fast mb-3 mt-1">
+            <div class="col-12">
+                <div (click)="detalleAnomalia(item.folio, item.maquina, item.id_sub_maquina)" class="card shadow p-3 bg-white rounded">
+                    <div class="card-body">
+                        <h5 class="card-title">Zona: <strong>{{item.zona_maquina}}</strong></h5>
+                        <h6 class="card-subtitle mb-2"><strong>{{item.nombre}}</strong></h6>
+                        <h6 class="card-subtitle mb-2 text-muted"><strong>{{item.prioridad}}</strong></h6>
+                        <p class="card-text">{{item.tarea}}</p>
+                        <p class="card-text"><strong>Anomalia:</strong> {{item.descripcion_anomalia}}</p>
+                        <!-- <span class="badge badge-danger">Clasificacion: A</span> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </ng-template>
+
 </div>
 
-<div *ngIf="pendientes.length == 0" class="row animate__animated animate__fadeIn animate__fast">
+
+<!-- <div *ngIf="pendientes.length == 0" class="row animate__animated animate__fadeIn animate__fast">
 
     <div class="col-12 text-center mt-5">
         <h4>Todo listo por aqui</h4>
@@ -21,4 +51,4 @@
         <p>No cuentas con actividades pendientes</p>
     </div>
 
-</div>
+</div> -->

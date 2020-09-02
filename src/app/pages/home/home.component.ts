@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActividadesService } from '../../services/actividades.service';
+import { ModalDetalleNokService } from '../../services/modal-detalle-nok.service';
 
 @Component({
   selector: 'app-home',
@@ -9,8 +10,10 @@ import { ActividadesService } from '../../services/actividades.service';
 export class HomeComponent implements OnInit {
 
   public pendientes: any = [];
+  
+  public role: any = localStorage.getItem('role');
 
-  constructor(private actividadesService: ActividadesService) { }
+  constructor(private actividadesService: ActividadesService, private modalDetalleNokService: ModalDetalleNokService) { }
 
   ngOnInit(): void {
     this.obtenerPendientes();
@@ -22,6 +25,11 @@ export class HomeComponent implements OnInit {
       console.log(resp);
       this.pendientes = resp.registros;
     });
+  }
+
+  detalleAnomalia(folio: string, id_maquina: number, id_sub_maquina: number) {
+    this.modalDetalleNokService.abrirModal();
+    console.log({folio, id_maquina, id_sub_maquina});
   }
 
 }

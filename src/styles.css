@@ -1,30 +1,202 @@
 * {
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-	font-family: 'Roboto', sans-serif;
-	/* background: #E5E5E5; */
+    font-family: 'Roboto', sans-serif;
+    /* background: #E5E5E5; */
 }
 
 .secundarios {
-	color: #969696;
+    color: #969696;
 }
 
 .fondo-modal {
-	background-color: rgba(0, 0, 0, 0.4);
-	left: 0px;
-	height: 100%;
-	position: fixed;
-	top: 0px;
-	width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    left: 0px;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    width: 100%;
 }
 
 .oculto {
-	display: none;
+    display: none;
 }
 
 .img-previa {
     height: 200px;
     width: 200px;
+}
+
+.formulario .lbl {
+    display: inline-block;
+    cursor: pointer;
+    color: #0074D9;
+    position: relative;
+    margin-top: 4px;
+    padding: 5px 15px 5px 25px;
+    font-size: 12px;
+    border-radius: 5px;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.formulario .lbl:hover {
+    background: rgba(0, 116, 217, 0.1);
+}
+
+.formulario .lbl:before {
+    content: "";
+    display: inline-block;
+    width: 17px;
+    height: 17px;
+    position: absolute;
+    left: 5px;
+    border-radius: 50%;
+    background: none;
+    border: 3px solid #0074D9;
+}
+
+.formulario input[type="radio"] {
+    display: none;
+}
+
+.formulario input[type="radio"]:checked+.lbl:before {
+    display: none;
+}
+
+.formulario input[type="radio"]:checked+.lbl {
+    padding: 5px 15px;
+    background: #0074D9;
+    border-radius: 2px;
+    color: #fff;
+}
+
+.formulario .checkbox .lbl:before {
+    border-radius: 3px;
+}
+
+.formulario .checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.formulario .checkbox input[type="checkbox"]:checked+.lbl:before {
+    display: none;
+}
+
+.formulario .checkbox input[type="checkbox"]:checked+.lbl {
+    background: #0074D9;
+    color: #fff;
+    padding: 5px 15px;
+}
+
+.limited {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    min-width: 272px;
+    max-width: 272px;
+    width: 272px;
+}
+
+
+/* Green */
+
+.primary {
+    border-color: #337AB7;
+    color: #337AB7;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.primary:hover {
+    border-color: #337AB7;
+    background-color: #337AB7;
+    color: white;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.success {
+    border-color: #5cb85c;
+    color: #5cb85c;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.success:hover {
+    border-color: #5cb85c;
+    background-color: #5cb85c;
+    color: white;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+
+/* Blue */
+
+.info {
+    border-color: #5bc0de;
+    color: #5bc0de;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.info:hover {
+    border-color: #5bc0de;
+    background: #5bc0de;
+    color: white;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+
+/* Orange */
+
+.warning {
+    border-color: #f0ad4e;
+    color: orange;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.warning:hover {
+    border-color: #f0ad4e;
+    background: #f0ad4e;
+    color: white;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+
+/* Red */
+
+.danger {
+    border-color: #d9534f;
+    color: #d9534f;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.danger:hover {
+    border-color: #d9534f;
+    background: #d9534f;
+    color: white;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+
+/* Gray */
+
+.default {
+    border-color: #e7e7e7;
+    color: black;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.default:hover {
+    background: #e7e7e7;
+}
+
+.puntero {
+    cursor: pointer;
 }

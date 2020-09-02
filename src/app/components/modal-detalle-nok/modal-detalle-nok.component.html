@@ -1,1 +1,58 @@
-<p>modal-detalle-nok works!</p>
+<!-- Modal -->
+<div class="fondo-modal" [class.oculto]="modalDetalleNokService.ocultarModal">
+
+    <div class="modal fade show animate__animated animate__bounceInDown" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" style="display: block; padding-right: 17px;">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center" id="exampleModalLabel1">Coordinar Anomalia</h4>
+                    <button (click)="cerrarModal()" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="container formulario">
+
+                        <form [formGroup]="myform">
+
+                            <fieldset formGroupName="name">
+
+                                <div class="form-group" [ngClass]="{'has-danger': firstName.invalid && (firstName.dirty || firstName.touched), 'has-success': firstName.valid && (firstName.dirty || firstName.touched)}">
+                                    <label>First Name</label>
+                                    <input type="text" class="form-control" formControlName="firstName" required>
+                                    <div class="form-control-feedback" *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+                                        <p *ngIf="firstName.errors.required">Last Name is required</p>
+                                    </div>
+
+                                    <!--
+                                        <pre>Valid? {{ myform.controls.name.controls.firstName.valid }}</pre>
+                                        <pre>Dirty? {{ myform.controls.name.controls.firstName.dirty }}</pre>
+                                    -->
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="">Tipo de Anomalia</label>
+                                    <br>
+                                    <input class="rdo-tab general" type="radio" name="tipoAnomalia" value="Seguridad" id="Seguridad"><label class="lbl" style="padding-left:none" for="Seguridad">Seguridad</label>
+                                    <input class="rdo-tab general" type="radio" name="tipoAnomalia" value="Mantenimiento" id="Mantenimiento"><label class="lbl" style="padding-left:none" for="Mantenimiento">Mantenimiento</label>
+                                    <input class="rdo-tab general" type="radio" name="tipoAnomalia" value="Produccion" id="Produccion"><label class="lbl" style="padding-left:none" for="Produccion">Produccion</label>
+                                </div>
+
+                            </fieldset>
+
+                        </form>
+
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button (click)="cerrarModal()" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button (click)="actualizarAnomalia()" type="button" class="btn btn-primary">Confirmar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

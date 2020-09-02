@@ -73,8 +73,9 @@ export class ActividadesService {
 
     if (this.loggedIn()) {
       
-      const jsonData = { id_actividad: id, folio, opcion: tipo, descripcion, file: img };
       const sgi = localStorage.getItem('sgi');
+      const role = localStorage.getItem('role');
+      const jsonData = { id_actividad: id, folio, opcion: tipo, descripcion, rol: role};
 
       if (this.cargarImagen(img, tipo, folio, sgi)) {
         return this.http.post(`${this.base_url}/realizar`, jsonData, this.headers);
