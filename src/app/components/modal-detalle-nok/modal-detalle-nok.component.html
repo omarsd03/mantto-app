@@ -12,32 +12,50 @@
 
                     <div class="container formulario">
 
-                        <form [formGroup]="myform">
+                        <form [formGroup]="forma">
 
-                            <fieldset formGroupName="name">
+                            <!-- <div class="form-group text-center">
+                                <label>Nombre</label>
+                                <input type="text" class="form-control" formControlName="nombre" required [class.is-invalid]="nombreNoValido">
+                                <small *ngIf="nombreNoValido" class="text-danger">El nombre debe llevar minimo 4 letras</small>
+                            </div> -->
 
-                                <div class="form-group" [ngClass]="{'has-danger': firstName.invalid && (firstName.dirty || firstName.touched), 'has-success': firstName.valid && (firstName.dirty || firstName.touched)}">
-                                    <label>First Name</label>
-                                    <input type="text" class="form-control" formControlName="firstName" required>
-                                    <div class="form-control-feedback" *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
-                                        <p *ngIf="firstName.errors.required">Last Name is required</p>
-                                    </div>
+                            <div class="form-group text-center">
+                                <label for="">Tipo de Anomalia</label>
+                                <br>
+                                <input (change)="valorCategoria()" formControlName="categoria" required [class.is-invalid]="categoriaNoValido" class="rdo-tab general" type="radio" name="categoria" value="Seguridad" id="Seguridad"><label class="lbl" style="padding-left:none"
+                                    for="Seguridad">Seguridad</label>
+                                <input (change)="valorCategoria()" formControlName="categoria" required [class.is-invalid]="categoriaNoValido" class="rdo-tab general" type="radio" name="categoria" value="Mantenimiento" id="Mantenimiento"><label class="lbl"
+                                    style="padding-left:none" for="Mantenimiento">Mantenimiento</label>
+                                <input (change)="valorCategoria()" formControlName="categoria" required [class.is-invalid]="categoriaNoValido" class="rdo-tab general" type="radio" name="categoria" value="Produccion" id="Produccion"><label class="lbl"
+                                    style="padding-left:none" for="Produccion">Produccion</label>
+                                <small *ngIf="categoriaNoValido" class="text-danger">El nombre debe llevar minimo 4 letras</small>
+                            </div>
 
-                                    <!--
-                                        <pre>Valid? {{ myform.controls.name.controls.firstName.valid }}</pre>
-                                        <pre>Dirty? {{ myform.controls.name.controls.firstName.dirty }}</pre>
-                                    -->
+                            <div class="form-group text-center">
+                                <label for="">Clasificacion</label>
+                                <br>
+                                <input formControlName="clasificacion" required [class.is-invalid]="clasificacionNoValido" class="rdo-tab general" type="radio" name="clasificacion" value="A" id="optA"><label class="lbl" style="padding-left:none" for="optA">A</label>
+                                <input formControlName="clasificacion" required [class.is-invalid]="clasificacionNoValido" class="rdo-tab general" type="radio" name="clasificacion" value="B" id="optB"><label class="lbl" style="padding-left:none" for="optB">B</label>
+                                <input formControlName="clasificacion" required [class.is-invalid]="clasificacionNoValido" class="rdo-tab general" type="radio" name="clasificacion" value="C" id="optC"><label class="lbl" style="padding-left:none" for="optC">C</label>
+                                <small *ngIf="clasificacionNoValido" class="text-danger">El nombre debe llevar minimo 4 letras</small>
+                            </div>
+
+                            <div class="form-group text-center">
+                                <label for="">Responsable</label>
+                                <select formControlName="responsable" required [class.is-invalid]="responsableNoValido" name="responsable" id="responsable" class="form-control form-control-sm">
+                                    <option value="">-- Selecciona una opcion --</option>
+                                    <option [value]="responsable.sgi" *ngFor="let responsable of responsables">{{responsable.nombre}}</option>
+                                </select>
+                            </div>
+
+                            <br>
+                            <label for="">Selecciona las anomalias</label>
+                            <div class="row form-group text-center checkbox">
+                                <div [style.inline-block] *ngFor="let choice of checks; let i=index">
+                                    <input [value]="choice.value" (change)="onCheckChange($event)" class="chk-tab" type="checkbox" name="anomalia" id="opt{{choice.id}}"><label class="lbl" for="opt{{choice.id}}">{{choice.value}}</label>
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="">Tipo de Anomalia</label>
-                                    <br>
-                                    <input class="rdo-tab general" type="radio" name="tipoAnomalia" value="Seguridad" id="Seguridad"><label class="lbl" style="padding-left:none" for="Seguridad">Seguridad</label>
-                                    <input class="rdo-tab general" type="radio" name="tipoAnomalia" value="Mantenimiento" id="Mantenimiento"><label class="lbl" style="padding-left:none" for="Mantenimiento">Mantenimiento</label>
-                                    <input class="rdo-tab general" type="radio" name="tipoAnomalia" value="Produccion" id="Produccion"><label class="lbl" style="padding-left:none" for="Produccion">Produccion</label>
-                                </div>
-
-                            </fieldset>
+                            </div>
 
                         </form>
 

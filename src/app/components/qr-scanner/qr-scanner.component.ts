@@ -57,6 +57,7 @@ export class QrScannerComponent {
         html: 'Por favor intenta escanear nuevamente',
         timer: 2000,
         timerProgressBar: true,
+        icon: 'warning'
       })
     }
 

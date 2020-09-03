@@ -13,7 +13,9 @@ export class HomeComponent implements OnInit {
   
   public role: any = localStorage.getItem('role');
 
-  constructor(private actividadesService: ActividadesService, private modalDetalleNokService: ModalDetalleNokService) { }
+  constructor(private actividadesService: ActividadesService, private modalDetalleNokService: ModalDetalleNokService) {
+    console.log(':D');
+  }
 
   ngOnInit(): void {
     this.obtenerPendientes();
@@ -25,11 +27,11 @@ export class HomeComponent implements OnInit {
       console.log(resp);
       this.pendientes = resp.registros;
     });
+
   }
 
   detalleAnomalia(folio: string, id_maquina: number, id_sub_maquina: number) {
-    this.modalDetalleNokService.abrirModal();
-    console.log({folio, id_maquina, id_sub_maquina});
+    this.modalDetalleNokService.abrirModal(folio, id_maquina, id_sub_maquina);
   }
 
 }
