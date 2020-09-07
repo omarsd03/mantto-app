@@ -61,7 +61,8 @@ export class ActividadesService {
     if (this.loggedIn()) {
       
       const sgi = localStorage.getItem('sgi');
-      const jsonData = { id_actividad: id, sgi, folio };
+      const role = localStorage.getItem('role');
+      const jsonData = { id_actividad: id, sgi, folio, role };
 
       return this.http.post(`${this.base_url}/actividad`, jsonData, this.headers);
 

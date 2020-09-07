@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 import { ModalOkService } from '../../services/modal-ok.service';
 import { ActividadesService } from '../../services/actividades.service';
+import { ModalAccionesService } from '../../services/modal-acciones.service';
 
 @Component({
   selector: 'app-qr-scanner',
@@ -16,12 +17,15 @@ export class QrScannerComponent {
   public id: string = this.activatedRoute.snapshot.paramMap.get('id');
   public folio: string = this.activatedRoute.snapshot.paramMap.get('folio');
 
+  public role: string = localStorage.getItem('role');
+
   public actividad = [];
 
   constructor(private modalOkService: ModalOkService, 
               private activatedRoute: ActivatedRoute, 
               private router: Router,
-              private actividadesService: ActividadesService) { }
+              private actividadesService: ActividadesService,
+              private modalAccionesService: ModalAccionesService) { }
 
   scanSuccessHandler($event: any) {
 
@@ -84,8 +88,19 @@ export class QrScannerComponent {
     this.modalOkService.abrirModal('NOK', this.id, this.folio);
   }
 
+  abrirModalAcciones() {
+    this.modalAccionesService.abrirModal(this.id, this.folio)
+  }
+
   regresar() {
-    this.router.navigateByUrl(`/actividades/${this.folio}`);
+
+    if (this.role == 'Operador') {
+      this.router.navigateByUrl(`/actividades/${this.folio}`);
+    } else {
+      this.router.navigateByUrl('/');
+    }
+
+
   }
 
 }

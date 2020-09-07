@@ -3,9 +3,7 @@ import { ModalDetalleNokService } from '../../services/modal-detalle-nok.service
 import { FormGroup, FormBuilder, Validators, FormArray, FormControl } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { BuilderService } from '../../services/builder.service';
-import { ActividadesService } from 'src/app/services/actividades.service';
 import { Router } from '@angular/router';
-import { HomeComponent } from '../../pages/home/home.component';
 
 @Component({
   selector: 'app-modal-detalle-nok',
@@ -16,13 +14,10 @@ export class ModalDetalleNokComponent implements OnInit {
 
   public forma: FormGroup;
   public clasificacion: string;
-  public home: HomeComponent;
 
-  public checks: Array<any> = [
-    // {description: 'Fuga', value: 'Fuga'},
-    // {description: "Desgaste", value: 'Desgaste'},
-    // {description: "Ruptura", value: 'Ruptura'}
-  ];
+  public role = localStorage.getItem('role');
+
+  public checks: Array<any> = [];
 
   public responsables: Array<any> = [];
 

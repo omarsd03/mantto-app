@@ -52,4 +52,14 @@ export class BuilderService {
 
   }
 
+  obtenerAcciones(id: any, folio: any) {
+
+    const sgi = localStorage.getItem('sgi');
+    const role = localStorage.getItem('role');
+    const jsonData = { sgi, role, id_sub_maquina: id, folio };
+
+    return this.http.post(`${this.base_url}/acciones`, jsonData, this.headers);
+
+  }
+
 }

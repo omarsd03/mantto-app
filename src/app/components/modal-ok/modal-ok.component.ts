@@ -18,10 +18,6 @@ export class ModalOkComponent implements OnInit {
   public imagenSubir: File;
   public imgTemp: any = null;
 
-  // public actividadForm = this.fb.group({
-
-  // })
-
   constructor(public modalOkService: ModalOkService, 
               private actividadesService: ActividadesService,
               private router: Router) { }
