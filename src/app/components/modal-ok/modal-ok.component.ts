@@ -61,7 +61,13 @@ export class ModalOkComponent implements OnInit {
 
         this.cerrarModal();
         Swal.fire('Buen trabajo!', resp.message, 'success');
-        this.router.navigateByUrl(`/actividades/${folio}`);
+        let role = localStorage.getItem('role');
+
+        if (role == 'Operador') {
+          this.router.navigateByUrl(`/actividades/${folio}`);
+        } else if (role == 'Responsable') {
+          this.router.navigateByUrl('/');
+        }
 
       }
 

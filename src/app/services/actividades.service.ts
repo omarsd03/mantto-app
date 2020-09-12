@@ -76,7 +76,7 @@ export class ActividadesService {
       
       const sgi = localStorage.getItem('sgi');
       const role = localStorage.getItem('role');
-      const jsonData = { id_actividad: id, folio, opcion: tipo, descripcion, rol: role};
+      const jsonData = { id_actividad: id, folio, opcion: tipo, descripcion, rol: role, sgi};
 
       if (this.cargarImagen(img, tipo, folio, sgi)) {
         return this.http.post(`${this.base_url}/realizar`, jsonData, this.headers);
@@ -147,6 +147,19 @@ export class ActividadesService {
       const jsonData = { sgi: sgi, status: 'NOK' };
 
       return this.http.post(`${this.base_url}/anomalias`, jsonData, this.headers);
+
+    }
+
+  }
+
+  historico() {
+
+    if (this.loggedIn()) {
+      
+      const sgi = localStorage.getItem('sgi');
+      const role = localStorage.getItem('role');
+
+      return this.http.post(`${this.base_url}/historico`, { sgi, role }, this.headers);
 
     }
 
