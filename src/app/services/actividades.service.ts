@@ -78,7 +78,7 @@ export class ActividadesService {
       const role = localStorage.getItem('role');
       const jsonData = { id_actividad: id, folio, opcion: tipo, descripcion, rol: role, sgi};
 
-      if (this.cargarImagen(img, tipo, folio, sgi)) {
+      if (this.cargarImagen(img, tipo, folio, sgi, id)) {
         return this.http.post(`${this.base_url}/realizar`, jsonData, this.headers);
       } else {
         console.log('Error en la peticion');
@@ -88,7 +88,7 @@ export class ActividadesService {
 
   }
 
-  async cargarImagen(img: File, tipo: string, folio: string, sgi: string) {
+  async cargarImagen(img: File, tipo: string, folio: string, sgi: string, id: any) {
 
     if (this.loggedIn()) {
 
@@ -99,6 +99,7 @@ export class ActividadesService {
         formData.append('tipo', tipo);
         formData.append('folio', folio);
         formData.append('sgi', sgi);
+        formData.append('id_sub_maquina', id);
 
         const resp = await fetch(`${this.base_url}/upload`, {
           method: 'POST',

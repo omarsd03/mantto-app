@@ -28,13 +28,13 @@ export class BuilderService {
     return !!localStorage.getItem('token');
   }
 
-  obtenerCheckbox(categoria) {
+  obtenerCheckbox() {
 
     if (this.loggedIn()) {
 
       const sgi = localStorage.getItem('sgi');
       const role = localStorage.getItem('role');
-      const jsonData = { sgi, role, categoria };
+      const jsonData = { sgi, role };
 
       return this.http.post(`${this.base_url}/checkbox`, jsonData, this.headers);
       

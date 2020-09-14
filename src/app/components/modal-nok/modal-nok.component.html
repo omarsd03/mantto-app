@@ -1,1 +1,100 @@
-<p>modal-nok works!</p>
+<!-- Modal -->
+<div class="fondo-modal" [class.oculto]="modalNokService.ocultarModal">
+
+    <div class="modal fade show animate__animated animate__bounceInDown" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" style="display: block; padding-right: 17px;">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center" id="exampleModalLabel1">Subir evidencia</h4>
+                    <button (click)="cerrarModal()" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="container formulario">
+
+                        <form [formGroup]="forma">
+
+                            <div class="form-group">
+                                <label for="">Sube una fotografia de evidencia</label>
+                                <img *ngIf="imgTemp" [src]="imgTemp" class="img-fluid rounded mx-auto d-block">
+                                <input formControlName="imagen" class="form-control" capture="camera" name="img" accept="image/jpg, image/jpeg" type="file" (change)="subirImagen($event.target.files[0])">
+                            </div>
+
+                            <br>
+                            <label for="">Selecciona la anomalia</label>
+                            <div class="row form-group text-center">
+                                <div [style.inline-block] *ngFor="let choice of checks; let i=index">
+                                    <input formControlName="anomalia" [value]="choice.value" (change)="onCheckChange(choice.value)" class="chk-tab" type="radio" name="anomalia" id="opt{{choice.id}}"><label class="lbl" for="opt{{choice.id}}">{{choice.value}}</label>
+                                </div>
+                            </div>
+
+                            <div *ngIf="otroAnomalia" class="row form-group text-center">
+                                <label for="">Especifique:</label>
+                                <input formControlName="anomaliaEspecifica" type="text" class="form-control" maxlength="10">
+                            </div>
+
+                            <div class="form-group text-center">
+
+                                <label for="">Tipo de Anomalia</label>
+                                <br>
+
+                                <div class="row text-center checkbox">
+                                    <div formArrayName="categorias" *ngFor="let item of forma.get('categorias')['controls']; let i = index;">
+                                        <input [formControlName]="i" class="rdo-tab" type="checkbox" name="categoria" [value]="categorias[i]" id="categoria{{i}}">
+                                        <label class="lbl" style="padding-left:none" for="categoria{{i}}">{{ categorias[i] }}</label>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="row form-group text-center">
+                                    <div [style.inline-block] formArrayName="categoria" *ngFor="let choice of checkList; let i=index">
+                                        <input [formControlName]="i" (change)="categoriaAgregar($event)" class="rdo-tab" type="checkbox" name="categoria" [value]="choice.value" [id]="choice.id" required>
+                                        <label class="lbl" style="padding-left:none" for="{{choice.id}}">{{choice.value}}</label>
+                                    </div>
+                                </div> -->
+
+                                <!-- <input required (change)="categoriaAgregar($event)" class="rdo-tab" type="checkbox" name="categoria" value="Seguridad" id="Seguridad">
+                                <label class="lbl" style="padding-left:none" for="Seguridad">Seguridad</label>
+
+                                <input required (change)="categoriaAgregar($event)" class="rdo-tab" type="checkbox" name="categoria" value="Mantenimiento" id="Mantenimiento">
+                                <label class="lbl" style="padding-left:none" for="Mantenimiento">Mantenimiento</label>
+
+                                <input required (change)="categoriaAgregar($event)" class="rdo-tab" type="checkbox" name="categoria" value="Produccion" id="Produccion">
+                                <label class="lbl" style="padding-left:none" for="Produccion">Produccion</label>
+
+                                <input required (change)="categoriaAgregar($event)" class="rdo-tab" type="checkbox" name="categoria" value="Medio Ambiente" id="M_Ambiente">
+                                <label class="lbl" style="padding-left:none" for="M_Ambiente">Medio Ambiente</label> -->
+
+                            </div>
+
+                            <div class="form-group text-center">
+                                <label for="">Clasificacion</label>
+                                <br>
+                                <input formControlName="clasificacion" required [class.is-invalid]="clasificacionNoValido" class="rdo-tab" type="radio" name="clasificacion" value="A" id="optA"><label class="lbl" style="padding-left:none" for="optA">A</label>
+                                <input formControlName="clasificacion" required [class.is-invalid]="clasificacionNoValido" class="rdo-tab" type="radio" name="clasificacion" value="B" id="optB"><label class="lbl" style="padding-left:none" for="optB">B</label>
+                                <input formControlName="clasificacion" required [class.is-invalid]="clasificacionNoValido" class="rdo-tab" type="radio" name="clasificacion" value="C" id="optC"><label class="lbl" style="padding-left:none" for="optC">C</label>
+                            </div>
+
+                            <div class="form-group text-center">
+                                <label>Describe la anomalia:</label>
+                                <textarea formControlName="descripcion" class="form-control input-sm" name="descripcion" required minlength="10"></textarea>
+                                <small *ngIf="descripcionNoValido" class="text-danger">Describa la anomalia en mas de 10 caracteres</small>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <button (click)="cerrarModal()" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button (click)="postearAnomalia()" type="button" class="btn btn-primary">Confirmar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

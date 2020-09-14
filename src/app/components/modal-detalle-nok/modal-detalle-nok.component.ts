@@ -49,10 +49,10 @@ export class ModalDetalleNokComponent implements OnInit {
     formArray.reset();
     formArray.clear();
 
-    this.builderService.obtenerCheckbox(this.clasificacion).subscribe( (resp: any) => {
-      console.log(resp);
-      this.checks = resp.registros;
-    });
+    // this.builderService.obtenerCheckbox(this.clasificacion).subscribe( (resp: any) => {
+    //   console.log(resp);
+    //   this.checks = resp.registros;
+    // });
 
   }
 

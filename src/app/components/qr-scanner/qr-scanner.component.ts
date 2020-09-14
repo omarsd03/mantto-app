@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { ModalOkService } from '../../services/modal-ok.service';
 import { ActividadesService } from '../../services/actividades.service';
 import { ModalAccionesService } from '../../services/modal-acciones.service';
+import { ModalNokService } from '../../services/modal-nok.service';
 
 @Component({
   selector: 'app-qr-scanner',
@@ -22,6 +23,7 @@ export class QrScannerComponent {
   public actividad = [];
 
   constructor(private modalOkService: ModalOkService, 
+              private modalNokService: ModalNokService,
               private activatedRoute: ActivatedRoute, 
               private router: Router,
               private actividadesService: ActividadesService,
@@ -85,7 +87,7 @@ export class QrScannerComponent {
   }
   
   abrirModalNOK() {
-    this.modalOkService.abrirModal('NOK', this.id, this.folio);
+    this.modalNokService.abrirModal('NOK', this.id, this.folio);
   }
 
   abrirModalAcciones() {

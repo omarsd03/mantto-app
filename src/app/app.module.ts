@@ -20,6 +20,8 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 // Ng2Chats
 import { ChartsModule } from 'ng2-charts';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import { ChartsModule } from 'ng2-charts';
     SharedModule,
     ComponentsModule,
     PagesModule,
-    AuthModule
+    AuthModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
