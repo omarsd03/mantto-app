@@ -103,6 +103,29 @@
             </div>
         </div>
 
+        <!-- <label for="">Selecciona la anomalia</label> -->
+        <div class="row mb-3">
+            <div class="col-12">
+                <label class="secundarios">Categorias: </label>
+                <div *ngFor="let categoria of categorias">
+                    <span class="badge badge-primary">{{categoria.categoria_anomalia}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
+                <div id="carouselResponsable" class="carousel slide" data-ride="carousel">
+                    <label class="secundarios">Evidencia</label>
+                    <div class="carousel-inner" *ngFor="let img of images">
+                        <div class="carousel-item active">
+                            <img src="{{base_url}}/{{img.path}}" class="d-block w-100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-12 mb-4">
                 <button (click)="abrirModalOK()" class="btn btn-rounded btn-block btn-success">OK</button>

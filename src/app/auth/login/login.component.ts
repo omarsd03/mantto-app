@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
+
 import Swal from 'sweetalert2';
 
 import { UsuarioService } from '../../services/usuario.service';
@@ -13,6 +14,7 @@ import { UsuarioService } from '../../services/usuario.service';
 export class LoginComponent {
 
   public formSubmitted = false;
+  public clicked = false;
 
   public loginForm = this.fb.group({
     sgi: ['', [Validators.required, Validators.minLength(8)] ],
@@ -25,6 +27,8 @@ export class LoginComponent {
 
     this.formSubmitted = true;
     console.log(this.loginForm.value);
+
+    // return;
 
     if (this.loginForm.invalid) {
       return;
@@ -41,6 +45,18 @@ export class LoginComponent {
         toast.addEventListener('mouseleave', Swal.resumeTimer)
       }
     });
+
+    this.clicked = true;
+    
+    Swal.fire({
+      title: 'Autenticando..',
+      html: 'Espere un momento',
+      onBeforeOpen: () => {
+        Swal.showLoading()
+      },
+    });
+    
+    // return;
 
     this.usuarioService.iniciarSesion(this.loginForm.value).subscribe(resp => {
 

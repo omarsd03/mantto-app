@@ -1,8 +1,8 @@
 <div class="card-body">
 
-    <form id="loginForm" class="form-horizontal form-material text-center" autocomplete="off" [formGroup]="loginForm" (ngSubmit)="iniciarSesion()" >
+    <form id="loginForm" class="form-horizontal form-material text-center" autocomplete="off" [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
 
-        <a href="javascript:void(0)" class="text-center db"><img class="img-responsive" src="../../assets/img/planta.svg" width="180" height="150" alt="Mantto App"/></a>
+        <a href="javascript:void(0)" class="text-center db"><img class="img-responsive" src="../../assets/img/planta.svg" width="180" height="150" alt="Mantto App" /></a>
 
         <h2>Iniciar Sesion</h2>
         <hr>
@@ -23,7 +23,7 @@
 
         <div class="form-group text-center m-t-20">
             <div class="col-xs-12">
-                <button class="btn btn-primary btn-block text-uppercase btn-rounded" type="submit">Iniciar Sesion</button>
+                <button [disabled]="clicked" class="btn btn-primary btn-block text-uppercase btn-rounded" type="submit">Iniciar Sesion</button>
             </div>
         </div>
 

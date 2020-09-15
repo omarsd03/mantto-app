@@ -6,6 +6,7 @@ import { ModalOkService } from '../../services/modal-ok.service';
 import { ActividadesService } from '../../services/actividades.service';
 import { ModalAccionesService } from '../../services/modal-acciones.service';
 import { ModalNokService } from '../../services/modal-nok.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-qr-scanner',
@@ -21,6 +22,10 @@ export class QrScannerComponent {
   public role: string = localStorage.getItem('role');
 
   public actividad = [];
+  public images = [];
+  public categorias = [];
+
+  public base_url = environment.base_url;
 
   constructor(private modalOkService: ModalOkService, 
               private modalNokService: ModalNokService,
@@ -72,8 +77,15 @@ export class QrScannerComponent {
   obtenerActividad() {
 
     this.actividadesService.obtenerActividad(this.id, this.folio).subscribe( (resp: any) => {
+
       console.log(resp);
       this.actividad = resp.registros;
+
+      if (this.role == 'Responsable') {
+        this.categorias = resp.categorias;
+        this.images = resp.images;
+      }
+
     });
 
   }

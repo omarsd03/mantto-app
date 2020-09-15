@@ -14,7 +14,7 @@ export class ActividadesComponent implements OnInit {
 
   public actividades: any = [];
 
-  constructor(private route: ActivatedRoute, private actividadesService: ActividadesService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private actividadesService: ActividadesService) { }
 
   ngOnInit(): void {
     this.obtenerFolio();
@@ -32,7 +32,14 @@ export class ActividadesComponent implements OnInit {
       console.log(resp);
       
       if (resp.ok == true) {
-        this.actividades = resp.registros;
+
+        if (resp.registros.length > 0) {
+          this.actividades = resp.registros;
+        } else {
+          Swal.fire('Completado', 'Terminaste tus actividades en esta tarjeta', "success");
+          this.router.navigateByUrl('/');
+        }
+
       } else {
         Swal.fire('Error', resp.error, 'error');
       }
