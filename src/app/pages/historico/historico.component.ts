@@ -8,25 +8,55 @@ import { ActividadesService } from '../../services/actividades.service';
 })
 export class HistoricoComponent {
 
-  public labels1: string[] = ['Pendientes', 'OK', 'NOK'];
+  public role = localStorage.getItem('role');
+
+  // public labels1: string[] = ['Pendientes', 'OK', 'NOK'];
+  public labels1: string[] = [];
 
   public data1 = [];
+
+  public titulo: string = '';
   // public data1 = [
   //   [10, 15, 40]
   // ];
 
+  validarHistorico() {
+
+    if (this.role == 'Operador') {
+      this.labels1 = ['Pendientes', 'OK', 'NOK'];
+      this.titulo = 'Historico de Actividades';
+      this.historico();
+      // this.data1 = [10, 15, 40]
+    } else {
+      this.labels1 = ['Pendientes', 'OK'];
+      this.titulo = 'Historico de Anomalias';
+      this.historico();
+      // this.data1 = [10, 15]
+    }
+
+  }
+
   constructor(private actividadesService: ActividadesService) { }
 
   ngOnInit(): void {
-    this.historico();
+    this.validarHistorico()
   }
 
   historico() {
 
     this.actividadesService.historico().subscribe( (resp: any) => {
+
+      console.log(resp);
       
       if (resp.ok) {
-        this.data1 = [ resp.registros[2].Pendiente, resp.registros[0].OK, resp.registros[1].NOK ]
+
+        if (this.role == 'Operador') {
+          this.data1 = [ resp.registros[2].Pendiente, resp.registros[0].OK, resp.registros[1].NOK ]
+        } else {
+          this.data1 = [ resp.registros[1].Pendiente, resp.registros[0].OK ]
+        }
+
+
       }
 
     });

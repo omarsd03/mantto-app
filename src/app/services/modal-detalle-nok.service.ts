@@ -1,20 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment.prod';
+import { BuilderService } from './builder.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModalDetalleNokService {
 
-  private base_url = environment.base_url;
-
   private _ocultarModal: boolean = true;
-  private folio: string;
-  private id_maquina: number;
-  private id_sub_maquina: number
+  public registros: any = [];
   
-  constructor(private http: HttpClient) { }
+  constructor(private builderService: BuilderService) { }
 
   get token(): string {
     return localStorage.getItem('token') || '';
@@ -37,28 +32,26 @@ export class ModalDetalleNokService {
     return !!localStorage.getItem('token');
   }
 
-  abrirModal(folio: string, id_maquina: number, id_sub_maquina: number) {
-    this.folio = folio;
-    this.id_maquina = id_maquina;
-    this.id_sub_maquina = id_sub_maquina;
-    this._ocultarModal = false;
+  abrirModal( folio: string, id_sub_maquina: any ) {
+
+    // this._ocultarModal = false;
+
+    this.builderService.dataDetalleNok(folio, id_sub_maquina).subscribe( (resp: any) => {
+
+      console.log(resp);
+
+      if (resp.ok) {
+        this._ocultarModal = false;
+        this.registros = resp.registros;
+      }
+      
+
+    });
+
   }
 
   cerrarModal() {
     this._ocultarModal = true;
-  }
-
-  actualizarAnomalia(forma) {
-
-    const sgi = localStorage.getItem('sgi');
-    const role = localStorage.getItem('role');
-    
-    const jsonAnomalia = { sgi, role, folio: this.folio, id_maquina: this.id_maquina, id_sub_maquina: this.id_sub_maquina };
-
-    console.log({ general: jsonAnomalia, datos: forma });
-
-    return this.http.post(`${this.base_url}/coordinarAnomalia`, { general: jsonAnomalia, datos: forma }, this.headers)
-
   }
 
 }

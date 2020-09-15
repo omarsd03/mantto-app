@@ -140,7 +140,8 @@ export class ActividadesService {
     if (this.loggedIn()) {
       
       const sgi = localStorage.getItem('sgi');
-      const jsonData = { sgi: sgi, status: 'OK' };
+      const role = localStorage.getItem('role');
+      const jsonData = { sgi: sgi, status: 'OK', role: role };
 
       return this.http.post(`${this.base_url}/realizadas`, jsonData, this.headers);
 
@@ -153,7 +154,8 @@ export class ActividadesService {
     if (this.loggedIn()) {
       
       const sgi = localStorage.getItem('sgi');
-      const jsonData = { sgi: sgi, status: 'NOK' };
+      const role = localStorage.getItem('role');
+      const jsonData = { sgi: sgi, status: 'NOK', role: role };
 
       return this.http.post(`${this.base_url}/anomalias`, jsonData, this.headers);
 

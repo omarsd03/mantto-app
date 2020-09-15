@@ -33,12 +33,15 @@ export class HomeComponent implements OnInit {
 
   detalleAnomalia(folio: string, id_maquina: number, id_sub_maquina: number) {
 
-    if (this.role == 'Interceptor') {
-      this.modalDetalleNokService.abrirModal(folio, id_maquina, id_sub_maquina);
-    } else {
-      console.log('Abrir Lector de QR');
-      this.router.navigate([`/actividad/${id_sub_maquina}`, { folio: folio }]);
-    }
+    console.log('Abrir Lector de QR');
+    this.router.navigate([`/actividad/${id_sub_maquina}`, { folio: folio }]);
+
+    // if (this.role == 'Interceptor') {
+    //   this.modalDetalleNokService.abrirModal(folio, id_maquina, id_sub_maquina);
+    // } else {
+    //   console.log('Abrir Lector de QR');
+    //   this.router.navigate([`/actividad/${id_sub_maquina}`, { folio: folio }]);
+    // }
 
 
   }

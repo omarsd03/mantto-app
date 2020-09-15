@@ -5,68 +5,93 @@
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title text-center" id="exampleModalLabel1">Coordinar Anomalia</h4>
+                    <h4 class="modal-title text-center" id="exampleModalLabel1">Detalle de Anomalia</h4>
                     <button (click)="cerrarModal()" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 </div>
                 <div class="modal-body">
 
-                    <div class="container formulario">
+                    <div class="container" *ngFor="let item of modalDetalleNokService.registros.datos">
 
-                        <form [formGroup]="forma">
-
-                            <!-- <div class="form-group text-center">
-                                <label>Nombre</label>
-                                <input type="text" class="form-control" formControlName="nombre" required [class.is-invalid]="nombreNoValido">
-                                <small *ngIf="nombreNoValido" class="text-danger">El nombre debe llevar minimo 4 letras</small>
-                            </div> -->
-
-                            <div class="form-group text-center">
-                                <label for="">Tipo de Anomalia</label>
+                        <div class="row mb-3">
+                            <div class="col-12 text-center">
+                                <strong>Zona</strong>
                                 <br>
-                                <input (change)="valorCategoria()" formControlName="categoria" required [class.is-invalid]="categoriaNoValido" class="rdo-tab general" type="radio" name="categoria" value="Seguridad" id="Seguridad"><label class="lbl" style="padding-left:none"
-                                    for="Seguridad">Seguridad</label>
-                                <input (change)="valorCategoria()" formControlName="categoria" required [class.is-invalid]="categoriaNoValido" class="rdo-tab general" type="radio" name="categoria" value="Mantenimiento" id="Mantenimiento"><label class="lbl"
-                                    style="padding-left:none" for="Mantenimiento">Mantenimiento</label>
-                                <input (change)="valorCategoria()" formControlName="categoria" required [class.is-invalid]="categoriaNoValido" class="rdo-tab general" type="radio" name="categoria" value="Produccion" id="Produccion"><label class="lbl"
-                                    style="padding-left:none" for="Produccion">Produccion</label>
-                                <small *ngIf="categoriaNoValido" class="text-danger">El nombre debe llevar minimo 4 letras</small>
+                                <em>{{item.a_zona_maquina}}</em>
                             </div>
+                        </div>
 
-                            <div class="form-group text-center">
-                                <label for="">Clasificacion</label>
+                        <div class="row mb-3">
+                            <div class="col-12 text-center">
+                                <strong>Maquina</strong>
                                 <br>
-                                <input formControlName="clasificacion" required [class.is-invalid]="clasificacionNoValido" class="rdo-tab general" type="radio" name="clasificacion" value="A" id="optA"><label class="lbl" style="padding-left:none" for="optA">A</label>
-                                <input formControlName="clasificacion" required [class.is-invalid]="clasificacionNoValido" class="rdo-tab general" type="radio" name="clasificacion" value="B" id="optB"><label class="lbl" style="padding-left:none" for="optB">B</label>
-                                <input formControlName="clasificacion" required [class.is-invalid]="clasificacionNoValido" class="rdo-tab general" type="radio" name="clasificacion" value="C" id="optC"><label class="lbl" style="padding-left:none" for="optC">C</label>
-                                <small *ngIf="clasificacionNoValido" class="text-danger">El nombre debe llevar minimo 4 letras</small>
+                                <em>{{item.m_maquina}}</em>
                             </div>
+                        </div>
 
-                            <div class="form-group text-center">
-                                <label for="">Responsable</label>
-                                <select formControlName="responsable" required [class.is-invalid]="responsableNoValido" name="responsable" id="responsable" class="form-control form-control-sm">
-                                    <option value="">-- Selecciona una opcion --</option>
-                                    <option [value]="responsable.sgi" *ngFor="let responsable of responsables">{{responsable.nombre}}</option>
-                                </select>
+                        <div class="row mb-3">
+                            <div class="col-12 text-center">
+                                <strong>Prioridad</strong>
+                                <br>
+                                <em>{{item.a_prioridad}}</em>
                             </div>
+                        </div>
 
-                            <br>
-                            <label for="">Selecciona las anomalias</label>
-                            <div class="row form-group text-center checkbox">
-                                <div [style.inline-block] *ngFor="let choice of checks; let i=index">
-                                    <input [value]="choice.value" (change)="onCheckChange($event)" class="chk-tab" type="checkbox" name="anomalia" id="opt{{choice.id}}"><label class="lbl" for="opt{{choice.id}}">{{choice.value}}</label>
+                        <div class="row mb-3">
+                            <div class="col-12 text-center">
+                                <strong>Descripcion de Actividad</strong>
+                                <br>
+                                <em>{{item.a_tarea}}</em>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-12 text-center">
+                                <strong>Descripcion de Anomalia</strong>
+                                <br>
+                                <em>{{item.descripcion_anomalia}}</em>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-6 text-center">
+                                <strong>Tipo de Anomalia</strong>
+                                <br>
+                                <em>{{item.s_tipo_anomalia}}</em>
+                            </div>
+                            <div class="col-6 text-center">
+                                <strong>Clasificacion</strong>
+                                <br>
+                                <em>{{item.s_clasificacion_anomalia}}</em>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-12 text-center">
+                                <strong>Categorias</strong>
+                                <div *ngFor="let categoria of modalDetalleNokService.registros.categorias">
+                                    <span class="badge badge-primary">{{categoria.categoria_anomalia}}</span>
                                 </div>
                             </div>
+                        </div>
 
-                        </form>
+                    </div>
 
-
+                    <div class="container">
+                        <div class="row mb-3">
+                            <div id="carouselDetalleNok" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner" *ngFor="let img of modalDetalleNokService.registros.images">
+                                    <div class="carousel-item active">
+                                        <img src="{{base_url}}/{{img.path}}" class="d-block w-100">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
 
                 <div class="modal-footer">
                     <button (click)="cerrarModal()" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <button (click)="actualizarAnomalia()" type="button" class="btn btn-primary">Confirmar</button>
                 </div>
 
             </div>

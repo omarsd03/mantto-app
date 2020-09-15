@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { timer } from 'rxjs';
 import { BuilderService } from 'src/app/services/builder.service';
 import Swal from 'sweetalert2';
 import { ModalNokService } from '../../services/modal-nok.service';
@@ -93,6 +94,14 @@ export class ModalNokComponent implements OnInit {
             'Perfecto!',
             'Por favor continua con el resto del formulario',
             'success'
+          )
+        }
+        if (result.isDismissed) {
+          this.forma.get('anomalia').reset();
+          Swal.fire(
+            'Ok, no hay problema',
+            'Verifica primero la anomalia y vuelve a seleccionar',
+            'info'
           )
         }
       });
