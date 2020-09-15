@@ -62,4 +62,15 @@ export class BuilderService {
 
   }
 
+  dataDetalleOk(folio, id_sub_maquina) {
+
+    const sgi = localStorage.getItem('sgi');
+    const role = localStorage.getItem('role');
+
+    const jsonData = { sgi, role, folio, id_sub_maquina };
+
+    return this.http.post(`${this.base_url}/detalleOk`, jsonData, this.headers);
+
+  }
+
 }

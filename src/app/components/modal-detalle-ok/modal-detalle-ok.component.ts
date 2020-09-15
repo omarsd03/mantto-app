@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalDetalleOkService } from '../../services/modal-detalle-ok.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-modal-detalle-ok',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalDetalleOkComponent implements OnInit {
 
-  constructor() { }
+  public base_url = environment.base_url;
+
+  constructor(public modalDetalleOkService: ModalDetalleOkService) { }
 
   ngOnInit(): void {
+  }
+
+  cerrarModal() {
+    this.modalDetalleOkService.cerrarModal();
   }
 
 }

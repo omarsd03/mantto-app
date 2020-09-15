@@ -80,7 +80,7 @@ export class ModalNokComponent implements OnInit {
       
       Swal.fire({
         title: 'Antes de todo, necesitas saber..',
-        text: "Esta anomalia puede ser de un lado o de otro, todo depende de como lo veas",
+        text: "Este sera el texto de ayuda para las anomalias",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

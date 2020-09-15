@@ -14,11 +14,12 @@ import { RealizadasComponent } from './realizadas/realizadas.component';
 import { ActividadComponent } from './actividad/actividad.component';
 import { HistoricoComponent } from './historico/historico.component';
 import { AnomaliasComponent } from './anomalias/anomalias.component';
+import { AccionesComponent } from './acciones/acciones.component';
 
 
 
 @NgModule({
-  declarations: [ActividadesComponent, HomeComponent, RealizadasComponent, ActividadComponent, HistoricoComponent, AnomaliasComponent, PagesComponent],
+  declarations: [ActividadesComponent, HomeComponent, RealizadasComponent, ActividadComponent, HistoricoComponent, AnomaliasComponent, PagesComponent, AccionesComponent],
   imports: [
     CommonModule,
     SharedModule,

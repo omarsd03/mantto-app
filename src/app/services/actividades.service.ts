@@ -70,7 +70,7 @@ export class ActividadesService {
 
   }
 
-  realizarActividad(id: string, folio: string, tipo: string, descripcion: string, img: File) {
+  async realizarActividad(id: string, folio: string, tipo: string, descripcion: string, img: File) {
 
     if (this.loggedIn()) {
       
@@ -78,11 +78,19 @@ export class ActividadesService {
       const role = localStorage.getItem('role');
       const jsonData = { id_actividad: id, folio, opcion: tipo, descripcion, rol: role, sgi};
 
-      if (this.cargarImagen(img, tipo, folio, sgi, id)) {
+      const imagen = await this.cargarImagen(img, tipo, folio, sgi, id);
+
+      if (imagen) {
         return this.http.post(`${this.base_url}/realizar`, jsonData, this.headers);
       } else {
         console.log('Error en la peticion');
       }
+
+      // if (this.cargarImagen(img, tipo, folio, sgi, id)) {
+      //   return this.http.post(`${this.base_url}/realizar`, jsonData, this.headers);
+      // } else {
+      //   console.log('Error en la peticion');
+      // }
 
     }
 
@@ -110,9 +118,9 @@ export class ActividadesService {
         });
 
         const data = await resp.json();
+        console.log(data);
 
         if (data.ok) {
-          console.log(data);
           return true;
         } else {
           return false;
@@ -161,6 +169,19 @@ export class ActividadesService {
       const role = localStorage.getItem('role');
 
       return this.http.post(`${this.base_url}/historico`, { sgi, role }, this.headers);
+
+    }
+
+  }
+
+  verAcciones() {
+
+    if (this.loggedIn()) {
+      
+      const sgi = localStorage.getItem('sgi');
+      const role = localStorage.getItem('role');
+
+      return this.http.post(`${this.base_url}/verAcciones`, { sgi, role }, this.headers);
 
     }
 

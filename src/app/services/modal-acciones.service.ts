@@ -54,7 +54,7 @@ export class ModalAccionesService {
       this._ocultarModal = false;
       this.acciones = resp.registros;
 
-    })
+    });
 
   }
 

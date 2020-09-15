@@ -1,19 +1,81 @@
-<div class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-            </div>
-            <div class="modal-body">
-                <p>Modal body text goes here.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+<!-- Modal -->
+<div class="fondo-modal" [class.oculto]="modalDetalleOkService.ocultarModal">
+
+    <div class="modal fade show animate__animated animate__bounceInDown" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" style="display: block; padding-right: 17px;">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-center" id="exampleModalLabel1">Detalle de Actividad</h4>
+                    <button (click)="cerrarModal()" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="container" *ngFor="let item of modalDetalleOkService.registros.datos">
+
+                        <div class="row mb-3">
+                            <div class="col-12 text-center">
+                                <strong>Zona</strong>
+                                <br>
+                                <em>{{item.a_zona_maquina}}</em>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-12 text-center">
+                                <strong>Maquina</strong>
+                                <br>
+                                <em>{{item.m_maquina}}</em>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-12 text-center">
+                                <strong>Prioridad</strong>
+                                <br>
+                                <em>{{item.a_prioridad}}</em>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-12 text-center">
+                                <strong>Descripcion de Actividad</strong>
+                                <br>
+                                <em>{{item.a_tarea}}</em>
+                            </div>
+                        </div>
+
+                        <!-- <div class="row mb-3">
+                            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item">
+                                        <img src="{{base_url}}/uploads/OK/MNT-00000001-3.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+
+                    </div>
+
+                    <div class="container">
+                        <div class="row mb-3">
+                            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner" *ngFor="let img of modalDetalleOkService.registros.images">
+                                    <div class="carousel-item active">
+                                        <img src="{{base_url}}/{{img.path}}" class="d-block w-100" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button (click)="cerrarModal()" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+
             </div>
         </div>
     </div>
+
 </div>

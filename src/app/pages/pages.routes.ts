@@ -8,6 +8,7 @@ import { ActividadComponent } from './actividad/actividad.component';
 import { AnomaliasComponent } from './anomalias/anomalias.component';
 import { RealizadasComponent } from './realizadas/realizadas.component';
 import { HistoricoComponent } from './historico/historico.component';
+import { AccionesComponent } from './acciones/acciones.component';
 
 
 const pagesRoutes: Routes = [
@@ -16,7 +17,8 @@ const pagesRoutes: Routes = [
     { path: 'actividad/:id', component: ActividadComponent, canActivate: [AuthGuard] },
     { path: 'anomalias', component: AnomaliasComponent, canActivate: [AuthGuard] },
     { path: 'realizadas', component: RealizadasComponent, canActivate: [AuthGuard] },
-    { path: 'historico', component: HistoricoComponent, canActivate: [AuthGuard] }
+    { path: 'historico', component: HistoricoComponent, canActivate: [AuthGuard] },
+    { path: 'acciones', component: AccionesComponent, canActivate: [AuthGuard] }
 ];
 
 export const PAGES_ROUTES = RouterModule.forChild(pagesRoutes);

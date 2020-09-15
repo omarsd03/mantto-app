@@ -53,25 +53,50 @@ export class ModalOkComponent implements OnInit {
     const id = this.modalOkService.id;
     const tipo = this.modalOkService.tipo;
 
-    this.actividadesService.realizarActividad(id, folio, tipo, descripcion, this.imagenSubir).subscribe( (resp: any) => {
-      
-      console.log(resp);
+    this.actividadesService.realizarActividad(id, folio, tipo, descripcion, this.imagenSubir).then((response: any) => {
 
-      if (resp.ok == true) {
+      response.subscribe( (resp: any) => {
 
-        this.cerrarModal();
-        Swal.fire('Buen trabajo!', resp.message, 'success');
-        let role = localStorage.getItem('role');
+        console.log(resp);
 
-        if (role == 'Operador') {
-          this.router.navigateByUrl(`/actividades/${folio}`);
-        } else if (role == 'Responsable') {
-          this.router.navigateByUrl('/');
-        }
+        if (resp.ok == true) {
 
-      }
+            this.cerrarModal();
+            Swal.fire('Buen trabajo!', resp.message, 'success');
+            let role = localStorage.getItem('role');
+    
+            if (role == 'Operador') {
+              this.router.navigateByUrl(`/actividades/${folio}`);
+            } else if (role == 'Responsable') {
+              this.router.navigateByUrl('/');
+            }
+    
+          }
 
+      });
+
+    }).catch(err => {
+      console.log(err);
     });
+    // this.actividadesService.realizarActividad(id, folio, tipo, descripcion, this.imagenSubir).subscribe( (resp: any) => {
+      
+    //   console.log(resp);
+
+    //   if (resp.ok == true) {
+
+    //     this.cerrarModal();
+    //     Swal.fire('Buen trabajo!', resp.message, 'success');
+    //     let role = localStorage.getItem('role');
+
+    //     if (role == 'Operador') {
+    //       this.router.navigateByUrl(`/actividades/${folio}`);
+    //     } else if (role == 'Responsable') {
+    //       this.router.navigateByUrl('/');
+    //     }
+
+    //   }
+
+    // });
 
   }
 
