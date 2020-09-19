@@ -15,6 +15,7 @@ import { ActividadComponent } from './actividad/actividad.component';
 import { HistoricoComponent } from './historico/historico.component';
 import { AnomaliasComponent } from './anomalias/anomalias.component';
 import { AccionesComponent } from './acciones/acciones.component';
+import { NotificacionesService } from '../services/notificaciones.service';
 
 
 
@@ -25,6 +26,9 @@ import { AccionesComponent } from './acciones/acciones.component';
     SharedModule,
     ComponentsModule,
     PAGES_ROUTES
+  ],
+  providers: [
+    NotificacionesService
   ]
 })
 export class PagesModule { }
