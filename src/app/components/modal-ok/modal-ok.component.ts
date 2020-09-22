@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ModalOkService } from '../../services/modal-ok.service';
 import { ActividadesService } from '../../services/actividades.service';
 import Swal from 'sweetalert2';
+import { AlertasService } from '../../services/alertas.service';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class ModalOkComponent implements OnInit {
 
   constructor(public modalOkService: ModalOkService, 
               private actividadesService: ActividadesService,
-              private router: Router) { }
+              private router: Router,
+              private alertasService: AlertasService) { }
 
   ngOnInit(): void {
   }
@@ -53,50 +55,52 @@ export class ModalOkComponent implements OnInit {
     const id = this.modalOkService.id;
     const tipo = this.modalOkService.tipo;
 
+    // this.alertasService.mostrarAlerta();
+
     this.actividadesService.realizarActividad(id, folio, tipo, descripcion, this.imagenSubir).then((response: any) => {
 
       response.subscribe( (resp: any) => {
 
         console.log(resp);
 
-        if (resp.ok == true) {
+        if (resp.ok) {
 
-            this.cerrarModal();
-            Swal.fire('Buen trabajo!', resp.message, 'success');
-            let role = localStorage.getItem('role');
-    
-            if (role == 'Operador') {
-              this.router.navigateByUrl(`/actividades/${folio}`);
-            } else if (role == 'Responsable') {
-              this.router.navigateByUrl('/');
+          // this.alertasService.cerrarAlerta();
+          this.cerrarModal();
+
+          // Swal.fire('Buen trabajo!', resp.message, 'success');
+          Swal.fire({
+            title: 'Buen trabajo!',
+            text: resp.message,
+            icon: 'success',
+          }).then( (result) => {
+            
+            if (result.isDismissed || result.isConfirmed) {
+              
+              let role = localStorage.getItem('role');
+      
+              if (role == 'Operador') {
+                this.router.navigateByUrl(`/actividades/${folio}`);
+              } else if (role == 'Responsable') {
+                this.router.navigateByUrl('/');
+              }
+
             }
+
+          });
+
+          // return;
+
     
-          }
+        } else {
+          this.alertasService.errorAlerta();
+        }
 
       });
 
     }).catch(err => {
       console.log(err);
     });
-    // this.actividadesService.realizarActividad(id, folio, tipo, descripcion, this.imagenSubir).subscribe( (resp: any) => {
-      
-    //   console.log(resp);
-
-    //   if (resp.ok == true) {
-
-    //     this.cerrarModal();
-    //     Swal.fire('Buen trabajo!', resp.message, 'success');
-    //     let role = localStorage.getItem('role');
-
-    //     if (role == 'Operador') {
-    //       this.router.navigateByUrl(`/actividades/${folio}`);
-    //     } else if (role == 'Responsable') {
-    //       this.router.navigateByUrl('/');
-    //     }
-
-    //   }
-
-    // });
 
   }
 

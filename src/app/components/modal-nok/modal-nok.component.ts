@@ -5,6 +5,7 @@ import { timer } from 'rxjs';
 import { BuilderService } from 'src/app/services/builder.service';
 import Swal from 'sweetalert2';
 import { ModalNokService } from '../../services/modal-nok.service';
+import { AlertasService } from '../../services/alertas.service';
 
 @Component({
   selector: 'app-modal-nok',
@@ -35,7 +36,8 @@ export class ModalNokComponent implements OnInit {
   constructor(public modalNokService: ModalNokService, 
               private fb: FormBuilder, 
               private builderService: BuilderService, 
-              private router: Router) {
+              private router: Router,
+              private alertasService: AlertasService) {
     this.crearFormulario();
     this.renderizarAnomalias();
   }
@@ -181,12 +183,32 @@ export class ModalNokComponent implements OnInit {
 
     // this.forma.reset();
 
+    // this.alertasService.mostrarAlerta();
+
     this.modalNokService.postearAnomalia(valueSubmit, this.imagenSubir).subscribe( (resp: any) => {
       
       if (resp.ok) {
-        Swal.fire({ title: 'Buen trabajo!', html: resp.message, icon: 'success' });
+
+        // this.alertasService.cerrarAlerta();
         this.cerrarModal();
-        this.router.navigateByUrl(`/actividades/${resp.folio}`);
+        // Swal.fire({ title: 'Buen trabajo!', html: resp.message, icon: 'success' });
+
+        Swal.fire({
+          title: 'Buen trabajo!',
+          text: resp.message,
+          icon: 'success',
+        }).then( (result) => {
+          
+          if (result.isDismissed || result.isConfirmed) {
+            
+            this.router.navigateByUrl(`/actividades/${resp.folio}`);
+
+          }
+
+        });
+
+        // this.router.navigateByUrl(`/actividades/${resp.folio}`);
+
       } else {
         localStorage.removeItem('token');
         Swal.fire({ title: 'Oops!', html: 'Parece que hubo un problema, por favor vuelve a iniciar sesion', icon: 'error' });
@@ -196,30 +218,5 @@ export class ModalNokComponent implements OnInit {
     })
 
   }
-
-  // actualizarAnomalia() {
-
-  //   // TODO: Traer a los responsables para que el interceptor los pueda seleccionar
-  //   console.log(this.forma.value);
-  //   console.log(this.forma.invalid);
-
-  //   if (this.forma.invalid) {
-  //     Swal.fire({ title: 'Campos obligatorios!', html: 'Por favor llena los campos correctamente', timer: 2000, timerProgressBar: true, icon: 'warning' });
-  //     return;
-  //   }
-
-  //   this.modalDetalleNokService.actualizarAnomalia(this.forma.value).subscribe( (resp: any) => {
-      
-  //     if (resp.ok) {
-        
-  //       Swal.fire({ title: 'Genial!', html: resp.message, icon: 'success' });
-  //       this.cerrarModal();
-  //       this.router.navigateByUrl('/');
-
-  //     }
-
-  //   });
-
-  // }
 
 }

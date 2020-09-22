@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActividadesService } from '../../services/actividades.service';
+import { AlertasService } from '../../services/alertas.service';
 
 @Component({
   selector: 'app-historico',
@@ -36,7 +37,7 @@ export class HistoricoComponent {
 
   }
 
-  constructor(private actividadesService: ActividadesService) { }
+  constructor(private actividadesService: ActividadesService, private alertasService: AlertasService) { }
 
   ngOnInit(): void {
     this.validarHistorico()
@@ -44,11 +45,15 @@ export class HistoricoComponent {
 
   historico() {
 
+    this.alertasService.mostrarAlerta();
+
     this.actividadesService.historico().subscribe( (resp: any) => {
 
       console.log(resp);
       
       if (resp.ok) {
+
+        this.alertasService.cerrarAlerta();
 
         if (this.role == 'Operador') {
           this.data1 = [ resp.registros[2].Pendiente, resp.registros[0].OK, resp.registros[1].NOK ]
@@ -57,6 +62,8 @@ export class HistoricoComponent {
         }
 
 
+      } else {
+        this.alertasService.errorAlerta();
       }
 
     });

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActividadesService } from '../../services/actividades.service';
 import { ModalDetalleNokService } from '../../services/modal-detalle-nok.service';
+import { AlertasService } from '../../services/alertas.service';
 
 @Component({
   selector: 'app-anomalias',
@@ -10,8 +11,9 @@ import { ModalDetalleNokService } from '../../services/modal-detalle-nok.service
 export class AnomaliasComponent implements OnInit {
 
   public anomalias: any = [];
+  public vacio = 1;
 
-  constructor(private actividadesService: ActividadesService, private modalDetalleNok: ModalDetalleNokService) { }
+  constructor(private actividadesService: ActividadesService, private modalDetalleNok: ModalDetalleNokService, private alertasService: AlertasService) { }
 
   ngOnInit(): void {
     this.obtenerAnomalias();
@@ -19,10 +21,28 @@ export class AnomaliasComponent implements OnInit {
 
   obtenerAnomalias() {
 
+    this.alertasService.mostrarAlerta();
+
     this.actividadesService.obtenerAnomalias().subscribe( (resp: any) => {
+      
       console.log(resp);
-      this.anomalias = resp.registros;
-    })
+
+      if (resp.ok) {
+        
+        this.anomalias = resp.registros;
+        this.alertasService.cerrarAlerta();
+
+        if (this.anomalias.length > 0) {
+          this.vacio = 1
+        } else {
+          this.vacio = 0;
+        }
+
+      } else {
+        this.alertasService.errorAlerta();
+      }
+
+    });
 
   }
 

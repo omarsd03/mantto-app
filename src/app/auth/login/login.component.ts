@@ -69,7 +69,10 @@ export class LoginComponent {
       this.router.navigateByUrl('/');
       
     }, (err) => {
-      Swal.fire('Error', 'Ha ocurrido un error en el servidor', 'error');
+      console.log(err);
+      Swal.fire('Error', err.error.message, 'error');
+      this.loginForm.reset();
+      this.clicked = false;
     });
 
   }

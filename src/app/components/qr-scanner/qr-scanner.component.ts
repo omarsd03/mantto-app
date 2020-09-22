@@ -7,6 +7,7 @@ import { ActividadesService } from '../../services/actividades.service';
 import { ModalAccionesService } from '../../services/modal-acciones.service';
 import { ModalNokService } from '../../services/modal-nok.service';
 import { environment } from 'src/environments/environment';
+import { AlertasService } from '../../services/alertas.service';
 
 @Component({
   selector: 'app-qr-scanner',
@@ -32,9 +33,12 @@ export class QrScannerComponent {
               private activatedRoute: ActivatedRoute, 
               private router: Router,
               private actividadesService: ActividadesService,
-              private modalAccionesService: ModalAccionesService) { }
+              private modalAccionesService: ModalAccionesService,
+              private alertasService: AlertasService) { }
 
   scanSuccessHandler($event: any) {
+
+    this.alertasService.mostrarAlerta();
 
     try {
       
@@ -79,11 +83,20 @@ export class QrScannerComponent {
     this.actividadesService.obtenerActividad(this.id, this.folio).subscribe( (resp: any) => {
 
       console.log(resp);
-      this.actividad = resp.registros;
 
-      if (this.role == 'Responsable') {
-        this.categorias = resp.categorias;
-        this.images = resp.images;
+      if (resp.ok) {
+
+        this.alertasService.cerrarAlerta();
+        
+        this.actividad = resp.registros;
+  
+        if (this.role == 'Responsable') {
+          this.categorias = resp.categorias;
+          this.images = resp.images;
+        }
+
+      } else {
+        this.alertasService.errorAlerta();
       }
 
     });
