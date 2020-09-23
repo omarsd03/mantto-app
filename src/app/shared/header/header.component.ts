@@ -5,7 +5,6 @@ import { UsuarioService } from '../../services/usuario.service';
 import { HeaderService } from '../../services/header.service';
 import { SwPush } from '@angular/service-worker';
 import { NotificacionesService } from '../../services/notificaciones.service';
-import { WebPushNotificationsService } from '../../services/web-push-notifications.service';
 
 
 @Component({
@@ -28,14 +27,11 @@ export class HeaderComponent {
 
   constructor(public router: Router, 
               private usuarioService: UsuarioService, 
-              private headerService: HeaderService,
-              private swPush: SwPush,
-              private notificaciones: NotificacionesService,
-              private webPushNotificationsService: WebPushNotificationsService) { }
+              private headerService: HeaderService) { }
 
   ngOnInit(): void {
     this.menu = this.headerService.cargarMenu();
-    this.webPushNotificationsService.requestPermission();
+    // this.webPushNotificationsService.requestPermission();
     // this.obtenerKey();
   }
 

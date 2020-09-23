@@ -24,13 +24,14 @@
                             <label for="">Selecciona la anomalia</label>
                             <div class="row form-group text-center">
                                 <div [style.inline-block] *ngFor="let choice of checks; let i=index">
-                                    <input formControlName="anomalia" [value]="choice.value" (change)="onCheckChange(choice.value)" class="chk-tab" type="radio" name="anomalia" id="opt{{choice.id}}"><label class="lbl" for="opt{{choice.id}}">{{choice.value}}</label>
+                                    <input formControlName="anomalia" [value]="choice.value" (change)="onCheckChange(choice.value, choice.descripcion)" class="chk-tab" type="radio" name="anomalia" id="opt{{choice.id}}"><label class="lbl" for="opt{{choice.id}}">{{choice.value}}</label>
                                 </div>
                             </div>
 
                             <div *ngIf="otroAnomalia" class="row form-group text-center">
                                 <label for="">Especifique:</label>
-                                <input formControlName="anomaliaEspecifica" type="text" class="form-control" maxlength="10">
+                                <input formControlName="anomaliaEspecifica" type="text" class="form-control" minlength="5" maxlength="20">
+                                <small class="text-primary">Se sugiere hacer una descripción breve y concisa de la anomalía observada.</small>
                             </div>
 
                             <div class="form-group text-center">
@@ -90,7 +91,7 @@
 
                 <div class="modal-footer">
                     <button (click)="cerrarModal()" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <button (click)="postearAnomalia()" type="button" class="btn btn-primary">Confirmar</button>
+                    <button [disabled]="clicked" (click)="postearAnomalia()" type="button" class="btn btn-primary">Confirmar</button>
                 </div>
 
             </div>

@@ -22,8 +22,7 @@
                         "assets": [
                             "src/favicon.ico",
                             "src/assets",
-                            "src/manifest.webmanifest",
-                            "src/app/serviceWorker"
+                            "src/manifest.webmanifest"
                         ],
                         "styles": [
                             "./node_modules/bootstrap/dist/css/bootstrap.min.css",

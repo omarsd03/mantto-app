@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { timer } from 'rxjs';
 import { BuilderService } from 'src/app/services/builder.service';
 import Swal from 'sweetalert2';
 import { ModalNokService } from '../../services/modal-nok.service';
@@ -28,6 +27,8 @@ export class ModalNokComponent implements OnInit {
   public responsables: Array<any> = [];
 
   public otroAnomalia = false;
+
+  public clicked = false;
 
   public categorias: any = ['Seguridad', 'Mantenimiento', 'Produccion', 'Medio Ambiente'];
 
@@ -71,7 +72,9 @@ export class ModalNokComponent implements OnInit {
 
   }
 
-  onCheckChange(event) {
+  onCheckChange(event, descripcion) {
+
+    console.log({event, descripcion});
 
     if (event == 'Otro') {
 
@@ -83,7 +86,7 @@ export class ModalNokComponent implements OnInit {
       
       Swal.fire({
         title: 'Antes de todo, necesitas saber..',
-        text: "Este sera el texto de ayuda para las anomalias",
+        text: `${event}: ${descripcion}`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -136,7 +139,7 @@ export class ModalNokComponent implements OnInit {
 
     this.forma = this.fb.group({
       anomalia: ['', [Validators.required]],
-      anomaliaEspecifica: ['', [Validators.minLength(3), Validators.maxLength(10)]],
+      anomaliaEspecifica: ['', [Validators.minLength(5), Validators.maxLength(20)]],
       clasificacion: ['', [Validators.required]],
       // categoria: new FormArray([], Validators.required),
       // categoria: this.fb.array([this.fb.control('', Validators.required)]),
@@ -185,11 +188,14 @@ export class ModalNokComponent implements OnInit {
 
     // this.alertasService.mostrarAlerta();
 
+    this.clicked = true;
+
     this.modalNokService.postearAnomalia(valueSubmit, this.imagenSubir).subscribe( (resp: any) => {
       
       if (resp.ok) {
 
         // this.alertasService.cerrarAlerta();
+        this.clicked = false;
         this.cerrarModal();
         // Swal.fire({ title: 'Buen trabajo!', html: resp.message, icon: 'success' });
 

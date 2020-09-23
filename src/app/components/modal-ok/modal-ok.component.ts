@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ModalOkService } from '../../services/modal-ok.service';
@@ -14,10 +14,13 @@ import { AlertasService } from '../../services/alertas.service';
 })
 export class ModalOkComponent implements OnInit {
 
+  @ViewChild('img') img: ElementRef
+
   public formSubmitted = false;
 
   public imagenSubir: File;
   public imgTemp: any = null;
+  public clicked = false;
 
   constructor(public modalOkService: ModalOkService, 
               private actividadesService: ActividadesService,
@@ -29,6 +32,8 @@ export class ModalOkComponent implements OnInit {
 
   cerrarModal() {
     this.imgTemp = null;
+    this.imagenSubir = undefined;
+    this.img.nativeElement.value = null;
     this.modalOkService.cerrarModal();
   }
 
@@ -55,6 +60,16 @@ export class ModalOkComponent implements OnInit {
     const id = this.modalOkService.id;
     const tipo = this.modalOkService.tipo;
 
+    console.log(folio, tipo, id);
+    console.log(this.imagenSubir);
+
+    if (this.imagenSubir === undefined) {
+      Swal.fire('Te falta un paso', 'Debes cargar la evidencia para proceder', 'warning');
+      return;
+    }
+
+    this.clicked = true;
+
     // this.alertasService.mostrarAlerta();
 
     this.actividadesService.realizarActividad(id, folio, tipo, descripcion, this.imagenSubir).then((response: any) => {
@@ -66,6 +81,7 @@ export class ModalOkComponent implements OnInit {
         if (resp.ok) {
 
           // this.alertasService.cerrarAlerta();
+          this.clicked = false;
           this.cerrarModal();
 
           // Swal.fire('Buen trabajo!', resp.message, 'success');

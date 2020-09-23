@@ -16,6 +16,8 @@ export class ModalAccionesComponent implements OnInit {
   
   public acciones: any = [];
 
+  public clicked = false;
+
   constructor(public modalAccionesService: ModalAccionesService,
               private fb: FormBuilder,
               private builderService: BuilderService) { 
@@ -48,6 +50,12 @@ export class ModalAccionesComponent implements OnInit {
     console.log(this.features);
   }
 
+  limpiarFormArray(formArray: FormArray) {
+    while (formArray.length !== 0) {
+      formArray.removeAt(0)
+    }
+  }
+
   agregarAcciones() {
 
     if (this.formGroup.invalid || this.features.length == 0) {
@@ -55,14 +63,20 @@ export class ModalAccionesComponent implements OnInit {
       return;
     }
 
+    this.clicked = true;
+
     this.modalAccionesService.agregarAcciones(this.formGroup.value).subscribe( (resp: any) => {
       
       console.log(resp);
 
       if (resp.ok) {
+
+        this.clicked = false;
         Swal.fire('Excelente!', resp.message, 'success');
+        this.limpiarFormArray(this.features);
         this.modalAccionesService.cerrarModal();
         this.formGroup.reset();
+
       } else {
         Swal.fire('Ups', 'Ha ocurrido un error en el servidor', 'error');
       }

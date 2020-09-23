@@ -53,42 +53,13 @@
 
                         </form>
 
-
-                        <!-- <form [formGroup]="formGroup"> -->
-
-
-                        <!-- <table class="table table-sm">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Accion</th>
-                                        <th>Borrar</th>
-                                    </tr>
-                                </thead>
-                                <tbody formArrayName="acciones">
-                                    <tr *ngFor="let control of acciones.controls; let i = index">
-                                        <td> {{ i + 1 }} </td>
-                                        <td>
-                                            <input class="form-control form-control-sm" type="text" [formControlName]="i">
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-danger btn-sm" (click)="borrarAccion(i)">Borrar</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                            <button class="btn btn-primary mt-3 mb-5 btn-block" type="button" (click)="agregarAccion()">Agregar Accion</button> -->
-
-                        <!-- </form> -->
-
                     </div>
 
                 </div>
 
                 <div class="modal-footer">
                     <button (click)="cerrarModal()" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                    <button (click)="agregarAcciones()" type="button" class="btn btn-primary">Confirmar</button>
+                    <button [disabled]="clicked" (click)="agregarAcciones()" type="button" class="btn btn-primary">Confirmar</button>
                 </div>
 
             </div>

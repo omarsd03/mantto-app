@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificacionesService } from '../services/notificaciones.service';
 
 @Component({
   selector: 'app-pages',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PagesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private notificaciones: NotificacionesService) { }
 
   ngOnInit(): void {
+    this.notificaciones.permisosNotificaciones()
   }
 
 }
