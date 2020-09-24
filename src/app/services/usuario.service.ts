@@ -34,28 +34,6 @@ export class UsuarioService {
     localStorage.setItem('menu', JSON.stringify(menu));
   }
 
-  // validarToken(): Observable<boolean> {
-
-  //   const token = localStorage.getItem('token') || '';
-
-  //   return this.http.get(`${base_url}/signin/renew`, {
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Authorization': `Bearer ${token}`
-  //     }
-  //   }).pipe(
-  //     tap( (resp: any) => {
-  //       localStorage.setItem('token', resp.token);
-  //       localStorage.setItem('id_user', resp.user.id_user);
-  //       localStorage.setItem('sgi', resp.user.user_sgi);
-  //       localStorage.setItem('role', resp.user.user_role);
-  //     }),
-  //     map(resp => true),
-  //     catchError(error => of(false))
-  //   );
-
-  // }
-
   iniciarSesion(formData: LoginForm) {
 
     return this.http.post(`${base_url}/signin`, formData).pipe(tap(
