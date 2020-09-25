@@ -27,7 +27,7 @@ export class NotificacionesService {
   }
 
   getKey() {
-    return this.http.get(`${this.base_url}/key`, this.headers);
+    return this.http.get(`${this.base_url}/key`);
   }
 
   permisosNotificaciones() {
@@ -53,11 +53,17 @@ export class NotificacionesService {
 
   addPushSubscriber(sub:any) {
     console.log(sub);
-    return this.http.post(`${this.base_url}/subscribe`, sub, this.headers);
+    const sgi = localStorage.getItem('sgi');
+    const role = localStorage.getItem('role');
+    return this.http.post(`${this.base_url}/subscribe`, {sub, sgi, role});
   }
 
-  send() {
-    return this.http.post(`${this.base_url}/newsletter`, null);
+  enviarNotificacion(titulo, cuerpo, sgi, role) {
+
+    const jsonData = { titulo, cuerpo, sgi, role };
+
+    return this.http.post(`${this.base_url}/push`, jsonData);
+
   }
 
 }

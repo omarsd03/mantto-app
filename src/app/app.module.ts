@@ -12,6 +12,8 @@ import { AuthModule } from './auth/auth.module';
 
 import { AppComponent } from './app.component';
 
+import { AuthGuard } from './guards/auth.guard';
+
 // Fontawsome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
@@ -22,6 +24,8 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ChartsModule } from 'ng2-charts';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 
 @NgModule({
@@ -40,7 +44,14 @@ import { environment } from '../environments/environment';
     AuthModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

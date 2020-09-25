@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 
 import { ModalAccionesService } from '../../services/modal-acciones.service';
 import { BuilderService } from '../../services/builder.service';
+import { NotificacionesService } from '../../services/notificaciones.service';
 
 @Component({
   selector: 'app-modal-acciones',
@@ -20,7 +21,8 @@ export class ModalAccionesComponent implements OnInit {
 
   constructor(public modalAccionesService: ModalAccionesService,
               private fb: FormBuilder,
-              private builderService: BuilderService) { 
+              private builderService: BuilderService,
+              private notificaciones: NotificacionesService) { 
     this.crearFormulario();
   }
 
@@ -70,6 +72,15 @@ export class ModalAccionesComponent implements OnInit {
       console.log(resp);
 
       if (resp.ok) {
+
+        const titulo = `Nuevas Acciones Agregadas`;
+        const cuerpo = `Acciones agregadas a ${resp.data.sub_maquina} en Folio ${resp.data.folio}`;
+        const sgi = resp.data.approval;
+        const role = resp.data.role;
+
+        this.notificaciones.enviarNotificacion(titulo, cuerpo, sgi, role).subscribe( (resp: any) => {
+          console.log(resp);
+        });
 
         this.clicked = false;
         Swal.fire('Excelente!', resp.message, 'success');

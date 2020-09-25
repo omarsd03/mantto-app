@@ -5,6 +5,7 @@ import { ModalOkService } from '../../services/modal-ok.service';
 import { ActividadesService } from '../../services/actividades.service';
 import Swal from 'sweetalert2';
 import { AlertasService } from '../../services/alertas.service';
+import { NotificacionesService } from '../../services/notificaciones.service';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class ModalOkComponent implements OnInit {
   constructor(public modalOkService: ModalOkService, 
               private actividadesService: ActividadesService,
               private router: Router,
-              private alertasService: AlertasService) { }
+              private alertasService: AlertasService,
+              private notificaciones: NotificacionesService) { }
 
   ngOnInit(): void {
   }
@@ -98,7 +100,18 @@ export class ModalOkComponent implements OnInit {
               if (role == 'Operador') {
                 this.router.navigateByUrl(`/actividades/${folio}`);
               } else if (role == 'Responsable') {
+
+                const titulo = `Anomalia Corregida!`;
+                const cuerpo = `Se ha cerrado la anomalia en ${resp.data.sub_maquina} con Folio ${resp.data.folio}`;
+                const sgi = resp.data.approval;
+                const role = resp.data.role;
+
+                this.notificaciones.enviarNotificacion(titulo, cuerpo, sgi, role).subscribe( (resp: any) => {
+                  console.log(resp);
+                })
+
                 this.router.navigateByUrl('/');
+
               }
 
             }

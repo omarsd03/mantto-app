@@ -36,4 +36,8 @@ export class AlertasService {
   errorAlerta() {
     Swal.fire('Error', 'Ha ocurrido un error en el servidor', 'error');
   }
+
+  sesionCaducada() {
+    Swal.fire('Sesion Caducada', 'Vuelve a iniciar sesion', 'info');
+  }
 }

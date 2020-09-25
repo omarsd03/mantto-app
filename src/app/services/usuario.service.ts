@@ -27,18 +27,22 @@ export class UsuarioService {
     return !!localStorage.getItem('token');
   }
 
-  guardarLocalStorage(token: string, user: any, menu: any) {
-    localStorage.setItem('token', token);
-    localStorage.setItem('sgi', user.user_sgi);
-    localStorage.setItem('role', user.user_role);
-    localStorage.setItem('menu', JSON.stringify(menu));
-  }
+  // guardarLocalStorage(token: string, user: any, menu: any) {
+  //   localStorage.setItem('token', token);
+  //   localStorage.setItem('sgi', user.user_sgi);
+  //   localStorage.setItem('role', user.user_role);
+  //   localStorage.setItem('menu', JSON.stringify(menu));
+  // }
 
   iniciarSesion(formData: LoginForm) {
 
     return this.http.post(`${base_url}/signin`, formData).pipe(tap(
       (resp: any) => {
-        this.guardarLocalStorage(resp.token, resp.user, resp.menu);
+        // this.guardarLocalStorage(resp.token, resp.user, resp.menu);
+        localStorage.setItem('token', resp.token);
+        localStorage.setItem('sgi', resp.user.user_sgi);
+        localStorage.setItem('role', resp.user.user_role);
+        localStorage.setItem('menu', JSON.stringify(resp.menu));
       }
     ));
 

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import Swal from 'sweetalert2';
 import { AlertasService } from '../../services/alertas.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +29,7 @@ export class HomeComponent implements OnInit {
 
     this.alertasService.mostrarAlerta();
 
-    this.actividadesService.obtenerPendientes().subscribe((resp: any) => {
+    this.actividadesService.obtenerPendientes().subscribe( (resp: any) => {
 
       console.log(resp);
       

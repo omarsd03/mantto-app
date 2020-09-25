@@ -5,6 +5,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 import { UsuarioService } from '../../services/usuario.service';
+import { AlertasService } from '../../services/alertas.service';
 
 @Component({
   selector: 'app-login',
@@ -21,30 +22,16 @@ export class LoginComponent {
     password: ['', [Validators.required] ]
   });
 
-  constructor( private fb: FormBuilder, private usuarioService: UsuarioService, private router: Router ) { }
+  constructor( private fb: FormBuilder, private usuarioService: UsuarioService, private router: Router, private alertasService: AlertasService ) { }
 
   iniciarSesion() {
 
     this.formSubmitted = true;
     console.log(this.loginForm.value);
 
-    // return;
-
     if (this.loginForm.invalid) {
       return;
     }
-
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'bottom-end',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      onOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    });
 
     this.clicked = true;
     
@@ -55,18 +42,16 @@ export class LoginComponent {
         Swal.showLoading()
       },
     });
-    
-    // return;
 
     this.usuarioService.iniciarSesion(this.loginForm.value).subscribe(resp => {
 
       // console.log('usuario logueado');
       console.log(resp);
-      Toast.fire({
-        icon: 'success',
-        title: 'Autenticado correctamente'
-      });
-      this.router.navigateByUrl('/');
+      if (resp.ok) {
+        this.router.navigateByUrl('/');
+      } else {
+        this.alertasService.errorAlerta();
+      }
       
     }, (err) => {
       console.log(err);

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActividadesService } from '../../services/actividades.service';
 import { AlertasService } from '../../services/alertas.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-historico',
@@ -37,7 +38,9 @@ export class HistoricoComponent {
 
   }
 
-  constructor(private actividadesService: ActividadesService, private alertasService: AlertasService) { }
+  constructor(private actividadesService: ActividadesService, 
+              private alertasService: AlertasService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.validarHistorico()

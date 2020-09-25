@@ -36,21 +36,21 @@ export class BuilderService {
       const role = localStorage.getItem('role');
       const jsonData = { sgi, role };
 
-      return this.http.post(`${this.base_url}/checkbox`, jsonData, this.headers);
+      return this.http.post(`${this.base_url}/checkbox`, jsonData);
       
     }
 
   }
 
-  obtenerResponsables() {
+  // obtenerResponsables() {
 
-    const sgi = localStorage.getItem('sgi');
-    const role = localStorage.getItem('role');
-    const jsonData = { sgi, role };
+  //   const sgi = localStorage.getItem('sgi');
+  //   const role = localStorage.getItem('role');
+  //   const jsonData = { sgi, role };
 
-    return this.http.post(`${this.base_url}/responsables`, jsonData, this.headers);
+  //   return this.http.post(`${this.base_url}/responsables`, jsonData, this.headers);
 
-  }
+  // }
 
   obtenerAcciones(id: any, folio: any) {
 
@@ -58,7 +58,7 @@ export class BuilderService {
     const role = localStorage.getItem('role');
     const jsonData = { sgi, role, id_sub_maquina: id, folio };
 
-    return this.http.post(`${this.base_url}/acciones`, jsonData, this.headers);
+    return this.http.post(`${this.base_url}/acciones`, jsonData);
 
   }
 
@@ -69,7 +69,7 @@ export class BuilderService {
 
     const jsonData = { sgi, role, folio, id_sub_maquina };
 
-    return this.http.post(`${this.base_url}/detalleOk`, jsonData, this.headers);
+    return this.http.post(`${this.base_url}/detalleOk`, jsonData);
 
   }
 
@@ -80,7 +80,7 @@ export class BuilderService {
 
     const jsonData = { sgi, role, folio, id_sub_maquina };
 
-    return this.http.post(`${this.base_url}/detalleNOk`, jsonData, this.headers)
+    return this.http.post(`${this.base_url}/detalleNOk`, jsonData)
 
   }
 

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ActividadesService } from './actividades.service';
+import { NotificacionesService } from './notificaciones.service';
 
 @Injectable({
   providedIn: 'root'
@@ -75,7 +76,7 @@ export class ModalNokService {
       // if (this.cargarImagen(img, tipo, folio, sgi)) {
       if (this.actividadesService.cargarImagen(img, 'NOK', this.folio, sgi, this.id_sub_maquina)) {
         // return this.http.post(`${this.base_url}/realizar`, jsonData, this.headers);
-        return this.http.post(`${this.base_url}/postearAnomalia`, { sgi: sgi, role: role, folio: this.folio, id_sub_maquina: this.id_sub_maquina, datos: forma }, this.headers);
+        return this.http.post(`${this.base_url}/postearAnomalia`, { sgi: sgi, role: role, folio: this.folio, id_sub_maquina: this.id_sub_maquina, datos: forma });
       } else {
         console.log('Error en la peticion');
       }

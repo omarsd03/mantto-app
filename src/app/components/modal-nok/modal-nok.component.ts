@@ -5,6 +5,7 @@ import { BuilderService } from 'src/app/services/builder.service';
 import Swal from 'sweetalert2';
 import { ModalNokService } from '../../services/modal-nok.service';
 import { AlertasService } from '../../services/alertas.service';
+import { NotificacionesService } from '../../services/notificaciones.service';
 
 @Component({
   selector: 'app-modal-nok',
@@ -38,7 +39,8 @@ export class ModalNokComponent implements OnInit {
               private fb: FormBuilder, 
               private builderService: BuilderService, 
               private router: Router,
-              private alertasService: AlertasService) {
+              private alertasService: AlertasService,
+              private notificaciones: NotificacionesService) {
     this.crearFormulario();
     this.renderizarAnomalias();
   }
@@ -191,13 +193,23 @@ export class ModalNokComponent implements OnInit {
     this.clicked = true;
 
     this.modalNokService.postearAnomalia(valueSubmit, this.imagenSubir).subscribe( (resp: any) => {
+
+      console.log(resp);
       
       if (resp.ok) {
 
         // this.alertasService.cerrarAlerta();
         this.clicked = false;
         this.cerrarModal();
-        // Swal.fire({ title: 'Buen trabajo!', html: resp.message, icon: 'success' });
+
+        const titulo = `Nueva Anomalia con Folio ${resp.datos.folio}`;
+        const cuerpo = `Anomalia en Actividad ${resp.datos.prioridad} en ${resp.datos.nombre_maquina}`;
+        const sgi = resp.datos.responsable;
+        const role = resp.datos.role;
+
+        this.notificaciones.enviarNotificacion(titulo, cuerpo, sgi, role).subscribe( (resp: any) => {
+          console.log(resp);
+        });
 
         Swal.fire({
           title: 'Buen trabajo!',

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActividadesService } from '../../services/actividades.service';
 import { ModalDetalleOkService } from '../../services/modal-detalle-ok.service';
 import { AlertasService } from '../../services/alertas.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-realizadas',
@@ -13,7 +15,9 @@ export class RealizadasComponent implements OnInit {
   public realizadas: any = [];
   public vacio = 1;
 
-  constructor(private actividadesService: ActividadesService, private modalDetalleOk: ModalDetalleOkService, private alertasService: AlertasService) { }
+  constructor(private actividadesService: ActividadesService, 
+              private modalDetalleOk: ModalDetalleOkService, 
+              private alertasService: AlertasService) { }
 
   ngOnInit(): void {
     this.obtenerRealizadas();

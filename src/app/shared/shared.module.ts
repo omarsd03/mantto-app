@@ -6,7 +6,8 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { faCheck, faClipboardList, faCoffee, faExclamationTriangle, faHistory, faSignOutAlt, faWrench } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
   declarations: [PagenotfoundComponent, HeaderComponent, SidebarComponent],
@@ -17,4 +18,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   ],
   exports: [PagenotfoundComponent, HeaderComponent, SidebarComponent]
 })
-export class SharedModule { }
+export class SharedModule {
+  constructor(library: FaIconLibrary) {
+    library.addIcons(faCoffee, faWrench, faCheck, faExclamationTriangle, faHistory, faClipboardList, faSignOutAlt);
+  }
+}

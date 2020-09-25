@@ -38,7 +38,7 @@ export class ActividadesService {
       const role = localStorage.getItem('role');
       const jsonData = { sgi, role };
   
-      return this.http.post(`${this.base_url}/pendientes`, jsonData, this.headers);
+      return this.http.post(`${this.base_url}/pendientes`, jsonData);
       
     }
 
@@ -50,7 +50,7 @@ export class ActividadesService {
       
       const jsonData = {folio};
       
-      return this.http.post(`${this.base_url}/actividades`, jsonData, this.headers);
+      return this.http.post(`${this.base_url}/actividades`, jsonData);
       
     }
 
@@ -64,7 +64,7 @@ export class ActividadesService {
       const role = localStorage.getItem('role');
       const jsonData = { id_actividad: id, sgi, folio, role };
 
-      return this.http.post(`${this.base_url}/actividad`, jsonData, this.headers);
+      return this.http.post(`${this.base_url}/actividad`, jsonData);
 
     }
 
@@ -81,7 +81,7 @@ export class ActividadesService {
       const imagen = await this.cargarImagen(img, tipo, folio, sgi, id);
 
       if (imagen) {
-        return this.http.post(`${this.base_url}/realizar`, jsonData, this.headers);
+        return this.http.post(`${this.base_url}/realizar`, jsonData);
       } else {
         console.log('Error en la peticion');
       }
@@ -143,7 +143,7 @@ export class ActividadesService {
       const role = localStorage.getItem('role');
       const jsonData = { sgi: sgi, status: 'OK', role: role };
 
-      return this.http.post(`${this.base_url}/realizadas`, jsonData, this.headers);
+      return this.http.post(`${this.base_url}/realizadas`, jsonData);
 
     }
 
@@ -157,7 +157,7 @@ export class ActividadesService {
       const role = localStorage.getItem('role');
       const jsonData = { sgi: sgi, status: 'NOK', role: role };
 
-      return this.http.post(`${this.base_url}/anomalias`, jsonData, this.headers);
+      return this.http.post(`${this.base_url}/anomalias`, jsonData);
 
     }
 
@@ -170,7 +170,7 @@ export class ActividadesService {
       const sgi = localStorage.getItem('sgi');
       const role = localStorage.getItem('role');
 
-      return this.http.post(`${this.base_url}/historico`, { sgi, role }, this.headers);
+      return this.http.post(`${this.base_url}/historico`, { sgi, role });
 
     }
 
@@ -183,7 +183,7 @@ export class ActividadesService {
       const sgi = localStorage.getItem('sgi');
       const role = localStorage.getItem('role');
 
-      return this.http.post(`${this.base_url}/verAcciones`, { sgi, role }, this.headers);
+      return this.http.post(`${this.base_url}/verAcciones`, { sgi, role });
 
     }
 

@@ -1,33 +1,24 @@
 <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="#">
-        <img src="../../../assets/img/planta.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"> Mantto App
+        <img src="../../../assets/img/planta.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
     </a>
+    <a class="navbar-brand">ManttoApp</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMantto" aria-controls="navbarMantto" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarMantto">
+
         <div class="navbar-nav">
 
-            <a *ngFor="let item of menu" class="nav-link animate__animated animate__fadeIn animate__fast" [routerLink]="item.ruta">
-                <!-- <fa-icon [icon]="faCheck"></fa-icon> -->{{ item.titulo }}</a>
-
-            <!-- <a class="nav-link animate__animated animate__fadeIn animate__fast" routerLink="/realizadas">
-                <fa-icon [icon]="faCheck"></fa-icon> Actividades Realizadas</a>
-
-            <a class="nav-link animate__animated animate__fadeIn animate__fast" routerLink="/anomalias">
-                <fa-icon [icon]="faExclamationTriangle"></fa-icon> Anomalias Reportadas</a>
-
-            <a class="nav-link animate__animated animate__fadeIn animate__fast" routerLink="/historico">
-                <fa-icon [icon]="faHistory"></fa-icon> Historico de Actividades</a> -->
-
-            <!-- <div class="form-inline my-2 my-lg-0">
-                <button class="btn btn-sm btn-outline-primary my-2 my-sm-0"> Recibir Notificaciones</button>
-            </div> -->
+            <a *ngFor="let item of menu" data-toggle="collapse" data-target=".navbar-collapse.show" class="nav-link animate__animated animate__fadeIn animate__fast" [routerLink]="item.ruta" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <fa-icon [icon]="['fas', item.icono]"></fa-icon> {{ item.titulo }}</a>
 
             <div class="form-inline my-2 my-lg-0">
-                <button (click)="logout()" class="btn btn-sm btn-outline-danger my-2 my-sm-0"><fa-icon [icon]="faSignOutAlt"></fa-icon> Cerrar Sesion</button>
+                <button (click)="logout()" class="btn btn-sm btn-outline-danger my-2 my-sm-0"><fa-icon [icon]="['fas', 'sign-out-alt']"></fa-icon> Cerrar Sesion</button>
             </div>
 
         </div>
+
     </div>
+
 </nav>

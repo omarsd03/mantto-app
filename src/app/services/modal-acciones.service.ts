@@ -71,7 +71,7 @@ export class ModalAccionesService {
 
     console.log({general: jsonData, acciones: forma});
 
-    return this.http.post(`${this.base_url}/agregarAcciones`, {general: jsonData, acciones: forma}, this.headers)
+    return this.http.post(`${this.base_url}/agregarAcciones`, {general: jsonData, acciones: forma})
 
   }
 

@@ -1,13 +1,21 @@
-<div class="card-body">
+<div class="card-body mt-5">
 
     <form id="loginForm" class="form-horizontal form-material text-center" autocomplete="off" [formGroup]="loginForm" (ngSubmit)="iniciarSesion()">
 
-        <a href="javascript:void(0)" class="text-center db"><img class="img-responsive" src="../../assets/img/planta.svg" width="180" height="150" alt="Mantto App" /></a>
+        <div class="form-group">
+            <div class="col-xs-12">
+                <a href="javascript:void(0)" class="text-center db"><img class="img-fluid" src="../../assets/img/planta.svg" alt="ManttoApp" width="250" height="220"></a>
+            </div>
+        </div>
 
-        <h2>Iniciar Sesion</h2>
-        <hr>
+        <div class="form-group">
+            <div class="col-xs-12">
+                <h2>Iniciar Sesion</h2>
+                <hr>
+            </div>
+        </div>
 
-        <div class="form-group m-t-40">
+        <div class="form-group">
             <div class="col-xs-12">
                 <input class="form-control" type="text" placeholder="SGI" formControlName="sgi" [class.is-invalid]="campoNoValido('sgi')">
                 <small *ngIf="campoNoValido('sgi')" class="text-danger">El sgi es obligatorio y debe tener minimo 8 caracteres</small>
