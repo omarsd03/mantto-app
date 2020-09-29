@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  base_url: 'http://localhost:3000/mantto'
+  base_url: 'http://localhost:3000/mantto',
+  abaddon: 'https://uat.abaddon.sgsm.saint-gobain.net/server/mantto'
 };
 
 /*

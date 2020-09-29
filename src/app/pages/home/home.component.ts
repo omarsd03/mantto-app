@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AlertasService } from '../../services/alertas.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +17,8 @@ export class HomeComponent implements OnInit {
 
   public pendientes: any = [];
   public vacio = 1;
+
+  public abaddon = environment.abaddon;
   
   public role: any = localStorage.getItem('role');
 

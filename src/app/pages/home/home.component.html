@@ -7,7 +7,7 @@
         <div *ngFor="let pendiente of pendientes" class="row animate__animated animate__fadeIn animate__fast mb-3 mt-1">
             <div class="col-12">
                 <div class="card shadow p-3 bg-white rounded">
-                    <!-- <img src="https://img.etimg.com/thumb/width-1200,height-900,imgsize-372453,resizemode-1,msid-76458260/small-biz/sme-sector/shape-of-your-factory-manufacturing-in-the-post-pandemic-era.jpg" class="card-img-top" loading="lazy"> -->
+                    <img src="{{abaddon}}/{{pendiente.path}}" class="card-img-top" loading="lazy">
                     <div class="card-body">
                         <h3 class="card-title"> {{ pendiente.m_maquina }} </h3>
                         <h5 class="card-title">Actividad {{pendiente.a_prioridad}}</h5>
