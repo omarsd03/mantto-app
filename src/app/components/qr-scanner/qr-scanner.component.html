@@ -17,6 +17,13 @@
 
         <div class="row">
             <div class="col-12">
+                <label class="secundarios">Folio</label>
+                <p>{{item.s_folio}}</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
                 <label class="secundarios">Tarea</label>
                 <p>{{item.a_tarea}}</p>
             </div>
@@ -61,6 +68,13 @@
     <div class="col-12" *ngFor="let item of actividad">
 
         <h2>Actividad <small>{{item.a_prioridad}}</small></h2>
+
+        <div class="row">
+            <div class="col-12">
+                <label class="secundarios">Folio</label>
+                <p>{{item.s_folio}}</p>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-12">
