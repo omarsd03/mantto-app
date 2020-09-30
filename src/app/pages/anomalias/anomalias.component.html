@@ -5,8 +5,9 @@
 
             <div class="card-body">
                 <h5 class="card-title">Zona: <strong>{{item.zona_maquina}}</strong></h5>
-                <h6 class="card-subtitle mb-2"><strong>{{item.nombre}}</strong></h6>
-                <h6 class="card-subtitle mb-2 text-muted"><strong>{{item.prioridad}}</strong></h6>
+                <h6 class="card-subtitle mb-3"><strong>{{item.nombre}}</strong></h6>
+                <h6 class="card-subtitle mb-2 text-muted"><strong>Actividad: {{item.prioridad}}</strong></h6>
+                <h6 class="card-subtitle mb-2 text-muted"><strong>Folio: {{item.folio}}</strong></h6>
                 <p class="card-text">{{item.tarea}}</p>
                 <p class="card-text"><strong>Anomalia:</strong> {{item.descripcion_anomalia}}</p>
                 <span class="badge badge-danger">Clasificacion: {{item.clasificacion_anomalia}}</span>

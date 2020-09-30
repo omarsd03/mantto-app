@@ -10,7 +10,8 @@
                     <img src="{{abaddon}}/{{pendiente.path}}" class="card-img-top" loading="lazy">
                     <div class="card-body">
                         <h3 class="card-title"> {{ pendiente.m_maquina }} </h3>
-                        <h5 class="card-title">Actividad {{pendiente.a_prioridad}}</h5>
+                        <h5 class="card-subtitle mb-2 text-muted">Actividad {{pendiente.a_prioridad}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Folio {{pendiente.g_folio}}</h6>
                         <span class="badge badge-pill badge-warning">{{pendiente.g_total_pendientes}} Actividades Pendientes</span>
                         <p class="card-text">{{pendiente.a_tarea}}</p>
                         <a [routerLink]="[ '/actividades', pendiente.g_folio ]" class="btn btn-block btn-primary animate__animated animate__fadeIn animate__fast">Detalles</a>
@@ -28,8 +29,9 @@
                 <div (click)="detalleAnomalia(item.folio, item.maquina, item.id_sub_maquina)" class="card shadow p-3 bg-white rounded">
                     <div class="card-body">
                         <h5 class="card-title">Zona: <strong>{{item.zona_maquina}}</strong></h5>
-                        <h6 class="card-subtitle mb-2"><strong>{{item.nombre}}</strong></h6>
-                        <h6 class="card-subtitle mb-2 text-muted"><strong>{{item.prioridad}}</strong></h6>
+                        <h6 class="card-subtitle mb-3"><strong>{{item.nombre}}</strong></h6>
+                        <h6 class="card-subtitle mb-2 text-muted"><strong>Actividad {{item.prioridad}}</strong></h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Folio {{item.folio}}</h6>
                         <p class="card-text">{{item.tarea}}</p>
                         <p class="card-text"><strong>Anomalia:</strong> {{item.descripcion_anomalia}}</p>
                         <span class="badge badge-danger">Clasificacion: {{item.clasificacion_anomalia}}</span>

@@ -31,7 +31,8 @@ export class ModalNokComponent implements OnInit {
 
   public clicked = false;
 
-  public categorias: any = ['Seguridad', 'Mantenimiento', 'Produccion', 'Medio Ambiente'];
+  // public categorias: any = ['Seguridad', 'Mantenimiento', 'Produccion', 'Medio Ambiente'];
+  public categorias: any = [];
 
   // public selectedCategorias: [string];
 
@@ -41,8 +42,8 @@ export class ModalNokComponent implements OnInit {
               private router: Router,
               private alertasService: AlertasService,
               private notificaciones: NotificacionesService) {
-    this.crearFormulario();
     this.renderizarAnomalias();
+    this.crearFormulario();
   }
 
   ngOnInit(): void {
@@ -67,9 +68,26 @@ export class ModalNokComponent implements OnInit {
 
   renderizarAnomalias() {
 
+    console.log(this.categorias);
+
     this.builderService.obtenerCheckbox().subscribe( (resp: any) => {
+
       console.log(resp);
-      this.checks = resp.registros;
+
+      if (resp.ok) {
+        
+        this.checks = resp.registros;
+
+        resp.categorias.forEach(c => {
+          this.categorias.push(c.categorias);
+        });
+
+        this.crearFormulario();
+
+        console.log(this.categorias);
+
+      }
+
     });
 
   }
@@ -158,7 +176,7 @@ export class ModalNokComponent implements OnInit {
       return new FormControl(false);
     });
 
-    return this.fb.array(values)
+    return this.fb.array(values);
 
     // return new FormArray(arr);
 
