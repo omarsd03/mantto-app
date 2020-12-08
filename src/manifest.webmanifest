@@ -1,6 +1,6 @@
 {
-    "name": "ManttoApp",
-    "short_name": "ManttoApp By Abaddon",
+    "name": "ManttoApp By Abaddon",
+    "short_name": "ManttoApp",
     "theme_color": "#337AB7",
     "background_color": "#fafafa",
     "display": "standalone",
