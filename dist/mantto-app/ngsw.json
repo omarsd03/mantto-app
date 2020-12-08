@@ -1,0 +1,100 @@
+{
+  "configVersion": 1,
+  "timestamp": 1607456768254,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/favicon.ico",
+        "/index.html",
+        "/main.4a1bebc2108fb928dfc2.js",
+        "/manifest.webmanifest",
+        "/polyfills.a4021de53358bb0fec14.js",
+        "/runtime.e227d1a0e31cbccbf8ec.js",
+        "/scripts.7bb769ea0e46da6b354f.js",
+        "/styles.db38cfeb4bc826a11de2.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/assets/css/animate.css",
+        "/assets/icons/icon-128x128.png",
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-152x152.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-384x384.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png",
+        "/assets/img/collaborating.svg",
+        "/assets/img/collaborators.svg",
+        "/assets/img/completed.svg",
+        "/assets/img/empty.svg",
+        "/assets/img/mantto.jpeg",
+        "/assets/img/planta.svg",
+        "/assets/img/todo-check.svg",
+        "/assets/img/todo-ok.svg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/assets/css/animate.css": "aeae9faeb540c72630a9b429ac3d549753a17643",
+    "/assets/icons/icon-128x128.png": "7aacc993f16c5bc1b8778bbf0a36f86488f3c9b1",
+    "/assets/icons/icon-144x144.png": "af889d970cf3ef8e29cb5ca9bbcd24a3ceb00f51",
+    "/assets/icons/icon-152x152.png": "378f2390350f02283bc60d85ab74b53f36d3c9f4",
+    "/assets/icons/icon-192x192.png": "85e73e445ee443a25cf5076d1d183d2899de2774",
+    "/assets/icons/icon-384x384.png": "115315dbe5f2e201a460941e8d4df44c336924f1",
+    "/assets/icons/icon-512x512.png": "3b4127f11bb3673a49b75b5f650515dee1c5931a",
+    "/assets/icons/icon-72x72.png": "87595035893e387eead66fa02c8b7de677c916ba",
+    "/assets/icons/icon-96x96.png": "00bf79cc568740d16589291ae3fe65d04fc0f993",
+    "/assets/img/collaborating.svg": "3d0825d2b4a145ec78cfb5825ed33fb889e232cc",
+    "/assets/img/collaborators.svg": "83845a524b98c1be3045a9f1aeeb7791421c45c4",
+    "/assets/img/completed.svg": "3e0907a3946a5e98fea148c009ce73165c6cfb69",
+    "/assets/img/empty.svg": "cb584b4eff034d5c656d8b8f9e526b836faeee64",
+    "/assets/img/mantto.jpeg": "a0f0c27a71810d442527b23cdedb2f7ae964f82f",
+    "/assets/img/planta.svg": "cb230e8ba65aeb5d52d76e49c0d8e74fdd83771e",
+    "/assets/img/todo-check.svg": "e8010736388587f31efae8c60ce1687ea7b3e33f",
+    "/assets/img/todo-ok.svg": "65b7eb3715be7e4cf4ac03484b6c080924e49cdd",
+    "/favicon.ico": "3f9aff9d1ba0e5646d012820825f8880250a9c14",
+    "/index.html": "0416e0759b7ed9795d4c890f94cf286a76dda953",
+    "/main.4a1bebc2108fb928dfc2.js": "a2bd7a5d432ae4206239c08f0b42fe7e9a15b79e",
+    "/manifest.webmanifest": "3f71a3fdf05e303604170286d9f579861bbec86b",
+    "/polyfills.a4021de53358bb0fec14.js": "b47435a9ef2a4829f2f9dfd35599bde3614981b1",
+    "/runtime.e227d1a0e31cbccbf8ec.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/scripts.7bb769ea0e46da6b354f.js": "fd4862fe786a26ed4b08752790ef63cab2508b5c",
+    "/styles.db38cfeb4bc826a11de2.css": "3c2d697ab6c097d4d3988d77dcd19114a67ee69f"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
