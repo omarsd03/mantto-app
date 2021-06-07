@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { UsuarioService } from './usuario.service';
 import Swal from 'sweetalert2';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlertasService {
 
-  constructor() { }
+  constructor(private router: Router, private usuarioService: UsuarioService) { }
 
   mostrarAlerta() {
 
@@ -37,7 +40,15 @@ export class AlertasService {
     Swal.fire('Error', 'Ha ocurrido un error en el servidor', 'error');
   }
 
+  logout() {
+    this.usuarioService.logout();
+    this.router.navigateByUrl('/login');
+  }
+
   sesionCaducada() {
+
     Swal.fire('Sesion Caducada', 'Vuelve a iniciar sesion', 'info');
+    this.logout();
+
   }
 }

@@ -84,6 +84,7 @@ export class ActividadesService {
         return this.http.post(`${this.base_url}/realizar`, jsonData);
       } else {
         console.log('Error en la peticion');
+        console.log(imagen);
       }
 
       // if (this.cargarImagen(img, tipo, folio, sgi, id)) {
